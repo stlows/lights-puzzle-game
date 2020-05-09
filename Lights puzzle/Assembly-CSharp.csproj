@@ -54,11 +54,11 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Breaker.cs" />
+     <Compile Include="Assets\Scripts\DoorOpener.cs" />
      <Compile Include="Assets\Scripts\Exit1.cs" />
      <Compile Include="Assets\Scripts\Hoverable.cs" />
      <Compile Include="Assets\Scripts\MinimumDistance.cs" />
      <Compile Include="Assets\Scripts\MouseLook.cs" />
-     <Compile Include="Assets\Scripts\OpenDoor.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\SelectionManager.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
@@ -85,11 +85,11 @@
  <Reference Include="Unity.PackageManagerUI.Editor">
  <HintPath>C:/Git/lights-puzzle-game/Lights puzzle/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
- <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Git/lights-puzzle-game/Lights puzzle/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
- </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
  <HintPath>C:/Git/lights-puzzle-game/Lights puzzle/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.TextMeshPro">
+ <HintPath>C:/Git/lights-puzzle-game/Lights puzzle/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.DataPrivacy">
  <HintPath>C:/Git/lights-puzzle-game/Lights puzzle/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
