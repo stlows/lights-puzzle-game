@@ -6,41 +6,39 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public CharacterController controller;
-    public float speed = 12f;
-    public float gravity = -9.81f;
-    public float jumpHeight = 3f;
-
-    public Transform groundCheck;
-    public float groundDistance = 0.4f;
-    public LayerMask groundMask;
-    
+    public float speed = 30f;
+    public float gravity = -100f;
+    public float jumpSpeed = 35f;
+    public LayerMask groundMask;    
 
     private Vector3 velocity;
-
-    private bool isGrounded;
+	private float groundDistance = 0.1f;
+	private bool isGrounded;
 
 	// Update is called once per frame
 	void Update ()
 	{
-	    isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-	    if (isGrounded && velocity.y < 0)
-	    {
-	        velocity.y = -10;
-	    }
-
+		// Lateral mouvement
 	    float x = Input.GetAxis("Horizontal");
 	    float z = Input.GetAxis("Vertical");
-
         Vector3 move = transform.right * x + transform.forward * z;
 
-	    controller.Move(move * speed * Time.deltaTime);
-
-	    if (Input.GetButtonDown("Jump") && isGrounded)
+		// Jump
+		Vector3 sphere_position = transform.position + Vector3.down * (controller.height * .5f - controller.radius);
+		float sphere_radius = controller.radius + groundDistance;
+		isGrounded = Physics.CheckSphere(sphere_position, sphere_radius, groundMask);
+		if (isGrounded)
+		{
+			velocity.y = 0;
+		}
+		if (Input.GetButtonDown("Jump") && isGrounded)
 	    {
-	        velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-	    }
+			velocity.y = jumpSpeed;
+		}
 	    velocity.y += gravity * Time.deltaTime;
-	    controller.Move(velocity * Time.deltaTime);
+
+		// Update controller
+		controller.Move(move * speed * Time.deltaTime);
+		controller.Move(velocity * Time.deltaTime);
 	}
 }
