@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1532480925075701008}
   - component: {fileID: 1532480925075701011}
   - component: {fileID: 1532480925075701009}
+  - component: {fileID: 5841170985613729897}
   m_Layer: 9
   m_Name: FPS
   m_TagString: Player
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1532480925075701010}
   m_LocalRotation: {x: 0, y: 0.92387956, z: 0, w: 0.38268343}
   m_LocalPosition: {x: -40, y: 10, z: 40}
-  m_LocalScale: {x: 1, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1532480925139446719}
   - {fileID: 8587168711078404740}
@@ -45,7 +46,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 3.8
+  m_Height: 15
   m_Radius: 0.6
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -65,12 +66,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1532480925075701011}
-  speed: 30
-  gravity: -100
+  lateralAcceleration: 500
+  verticalAcceleration: -100
+  maxLateralSpeed: 30
   jumpSpeed: 35
+  lateralFriction: 0.1
   groundMask:
     serializedVersion: 2
     m_Bits: 2048
+  velocity: {x: 0, y: 0, z: 0}
+  velocityIncrement: {x: 0, y: 0, z: 0}
+--- !u!114 &5841170985613729897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532480925075701010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5754e8fd71796e7408aaaf6472201030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorCheckTexture: {fileID: 8400000, guid: 6dfcd103a57bde04e9096dcf0e51a919, type: 2}
+  groundColor: {r: 1, g: 1, b: 1, a: 0}
+  powerColor: 0
 --- !u!1 &1532480925139446688
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +243,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 10
+  far clip plane: 100
   field of view: 1
   orthographic: 0
   orthographic size: 0.001
@@ -249,4 +269,4 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2893832155234618637}
-  m_Enabled: 1
+  m_Enabled: 0

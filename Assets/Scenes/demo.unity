@@ -473,27 +473,6 @@ Transform:
   m_Father: {fileID: 319109538}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &398800301 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1532480925075701010, guid: 4e2c84474291ff14ead2f88b1a440142,
-    type: 3}
-  m_PrefabInstance: {fileID: 489132702}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &398800302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 398800301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5754e8fd71796e7408aaaf6472201030, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colorCheckTexture: {fileID: 8400000, guid: 6dfcd103a57bde04e9096dcf0e51a919, type: 2}
-  groundColor: {r: 0, g: 0, b: 0, a: 0}
-  powerColor: 0
 --- !u!1001 &489132702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -505,31 +484,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ColorCheckTexture
-      objectReference: {fileID: 0}
-    - target: {fileID: 1532480925075701008, guid: 4e2c84474291ff14ead2f88b1a440142,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1532480925075701008, guid: 4e2c84474291ff14ead2f88b1a440142,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1532480925075701008, guid: 4e2c84474291ff14ead2f88b1a440142,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 135
-      objectReference: {fileID: 0}
-    - target: {fileID: 1532480925075701008, guid: 4e2c84474291ff14ead2f88b1a440142,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1532480925075701008, guid: 4e2c84474291ff14ead2f88b1a440142,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1532480925075701009, guid: 4e2c84474291ff14ead2f88b1a440142,
         type: 3}
@@ -546,11 +500,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FPS
       objectReference: {fileID: 0}
-    - target: {fileID: 1532480925075701011, guid: 4e2c84474291ff14ead2f88b1a440142,
-        type: 3}
-      propertyPath: m_Height
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 2893832155234618637, guid: 4e2c84474291ff14ead2f88b1a440142,
         type: 3}
       propertyPath: m_Layer
@@ -565,11 +514,6 @@ PrefabInstance:
         type: 3}
       propertyPath: field of view
       value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 4990562536069038895, guid: 4e2c84474291ff14ead2f88b1a440142,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 2048
       objectReference: {fileID: 0}
     - target: {fileID: 6829134843125532139, guid: 4e2c84474291ff14ead2f88b1a440142,
         type: 3}
@@ -1745,7 +1689,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143572875}
   m_LocalRotation: {x: 0.7077328, y: -0.24598418, z: 0.2931525, w: 0.59385836}
-  m_LocalPosition: {x: 0, y: 20, z: 0}
+  m_LocalPosition: {x: 0, y: 20, z: 15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 647210608}
@@ -1764,7 +1708,7 @@ Light:
   m_Color: {r: 0, g: 0, b: 1, a: 1}
   m_Intensity: 10
   m_Range: 100
-  m_SpotAngle: 130
+  m_SpotAngle: 120
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -2088,7 +2032,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &2002878442
 AudioSource:
   m_ObjectHideFlags: 0
