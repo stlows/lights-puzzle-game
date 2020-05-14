@@ -74,8 +74,6 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 2048
-  velocity: {x: 0, y: 0, z: 0}
-  velocityIncrement: {x: 0, y: 0, z: 0}
 --- !u!114 &5841170985613729897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +248,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 6dfcd103a57bde04e9096dcf0e51a919, type: 2}
   m_TargetDisplay: 1
