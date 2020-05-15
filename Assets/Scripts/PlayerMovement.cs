@@ -13,10 +13,11 @@ public class PlayerMovement : MonoBehaviour
 	public float jumpSpeed = 35f;
 	public float lateralFriction = 0.1f;
 	public LayerMask groundMask;
+	public bool alive = true;
 
 	private PowerColor groundColor;
-	private Vector3 shadowForce;
 	private PowerColor prevGroundColor;
+	public Vector3 prevPosition;
 	private Vector3 velocity;
 	private float groundDistance = 0.1f;
 	private bool isGrounded;
@@ -26,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
 	{
 		// Update color the player is stading on (reads from ColorCheck.cs)
 		groundColor = gameObject.GetComponent<ColorCheck>().powerColor;
-		shadowForce = gameObject.GetComponent<ColorCheck>().shadowForce;
 
 		// Ground Check
 		Vector3 sphere_position = transform.position + Vector3.down * (controller.height * .5f - controller.radius);
@@ -34,9 +34,26 @@ public class PlayerMovement : MonoBehaviour
 		isGrounded = Physics.CheckSphere(sphere_position, sphere_radius, groundMask);
 
 
+
+		// Effect of black color
 		if (isGrounded && (groundColor == PowerColor.BLACK))
 		{
-			// death
+			if (prevGroundColor == PowerColor.BLACK)
+			{ 
+				alive = false;
+			}
+			else
+			{
+				transform.position = prevPosition;
+				velocity.x = 0;
+				velocity.y=0;
+				return;
+			}
+		}
+		else
+		{
+			alive = true;
+			prevPosition = transform.position;
 		}
 
 
@@ -56,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
 		else
 		{
 			// Lateral mouvement
-			if (isGrounded)
+			if (isGrounded && (groundColor != PowerColor.CYAN))
 			{
 				float x = Input.GetAxis("Horizontal");
 				float z = Input.GetAxis("Vertical");
@@ -74,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
 				}
 				velocity.x = newSpeed.x;
 				velocity.z = newSpeed.z;
+
 			}
 
 			// Jump
@@ -88,15 +106,8 @@ public class PlayerMovement : MonoBehaviour
 
 		}
 
-		// Shadow force
-		if (isGrounded)
-		{
-			velocity.x += shadowForce.x * Time.deltaTime;
-			velocity.z += shadowForce.z * Time.deltaTime;
-		}
-
 		// Lateral Friction
-		if (isGrounded)
+		if (isGrounded && (groundColor != PowerColor.CYAN))
 		{
 			velocity.x -= lateralFriction * velocity.x;
 			velocity.z -= lateralFriction * velocity.z;
