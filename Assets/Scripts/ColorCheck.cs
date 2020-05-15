@@ -10,8 +10,8 @@ public class ColorCheck : MonoBehaviour
     public RenderTexture colorCheckTexture;
     public Color groundColor;
     public PowerColor powerColor;
-    private Texture2D tex;
 
+    private Texture2D tex;
 
     // Start is called before the first frame update
     void Start()
@@ -45,8 +45,8 @@ public class ColorCheck : MonoBehaviour
         // Restore previously active render texture
         RenderTexture.active = currentActiveRT;
 
-        // Read Color Pixel from texture 2D
-        groundColor = tex.GetPixel(0, 0);
+        groundColor = tex.GetPixel(tex.width/2, tex.height/2);
+
 
         Color[] colorArray = { 
             Color.white, 
