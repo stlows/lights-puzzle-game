@@ -10,8 +10,9 @@ public class ColorCheck : MonoBehaviour
     public RenderTexture colorCheckTexture;
     public Color groundColor;
     public PowerColor powerColor;
-    private Texture2D tex;
+    public Vector3 shadowForce = new Vector3(0, 0, 0);
 
+    private Texture2D tex;
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +47,23 @@ public class ColorCheck : MonoBehaviour
         RenderTexture.active = currentActiveRT;
 
         // Read Color Pixel from texture 2D
-        groundColor = tex.GetPixel(0, 0);
+        Color[] pixels = tex.GetPixels(0, 0, tex.width, tex.height);
+        float[,] invertedGrayscale = new float[tex.width, tex.height];
+
+        float forceMagnitude = 0;
+        for (int i=0; i< tex.width; i++)
+        {
+            for (int j = 0; j < tex.height; j++)
+            {
+                invertedGrayscale[i, j] = 1 - pixels[tex.height * i + j].grayscale;
+                forceMagnitude += invertedGrayscale[i, j] / (tex.width * tex.height);
+            }
+        }
+
+        shadowForce = Vector3.up * forceMagnitude;
+
+        groundColor = tex.GetPixel(tex.width/2, tex.height/2);
+
 
         Color[] colorArray = { 
             Color.white, 

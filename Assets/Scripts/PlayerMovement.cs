@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
 	public LayerMask groundMask;
 
 	private PowerColor groundColor;
+	private Vector3 shadowForce;
 	private PowerColor prevGroundColor;
 	private Vector3 velocity;
 	private float groundDistance = 0.1f;
@@ -25,15 +26,24 @@ public class PlayerMovement : MonoBehaviour
 	{
 		// Update color the player is stading on (reads from ColorCheck.cs)
 		groundColor = gameObject.GetComponent<ColorCheck>().powerColor;
+		shadowForce = gameObject.GetComponent<ColorCheck>().shadowForce;
 
 		// Ground Check
 		Vector3 sphere_position = transform.position + Vector3.down * (controller.height * .5f - controller.radius);
 		float sphere_radius = controller.radius + groundDistance;
 		isGrounded = Physics.CheckSphere(sphere_position, sphere_radius, groundMask);
 
-		// When the detected color is black for the first time, bounce back.
-		if ((groundColor == PowerColor.BLACK) && (prevGroundColor != PowerColor.BLACK))
+
+		if (isGrounded && (groundColor == PowerColor.BLACK))
 		{
+			// death
+		}
+
+
+		// When the detected color is black for the first time, bounce back.
+		if ((groundColor == PowerColor.BLUE) && (prevGroundColor != PowerColor.BLUE))
+		{
+			// TODO detecter le gradient de bleu et appliquer la force en direction opposee
 			velocity = -velocity.normalized * Math.Max(30, velocity.magnitude);
 			if (!isGrounded) {
 				velocity.y = Math.Max(jumpSpeed, velocity.y);
@@ -76,6 +86,13 @@ public class PlayerMovement : MonoBehaviour
 				velocity.y = (groundColor == PowerColor.RED) ? jumpSpeed * 3 : jumpSpeed;
 			}
 
+		}
+
+		// Shadow force
+		if (isGrounded)
+		{
+			velocity.x += shadowForce.x * Time.deltaTime;
+			velocity.z += shadowForce.z * Time.deltaTime;
 		}
 
 		// Lateral Friction
