@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private PowerColor groundColor;
 	private PowerColor prevGroundColor;
-	public Vector3 prevPosition;
+	public Vector3 prevAlivePosition;
 	private Vector3 velocity;
 	private float groundDistance = 0.1f;
 	private bool isGrounded;
@@ -35,29 +35,34 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-		// Effect of black color
+		// Check for black color
 		if (isGrounded && (groundColor == PowerColor.BLACK))
 		{
 			if (prevGroundColor == PowerColor.BLACK)
 			{ 
+				// If the color is black twice in a row (will happen on a jump),
+				// death
 				alive = false;
 			}
 			else
 			{
-				transform.position = prevPosition;
+				// If this is the first time that the color is black,
+				// Teleport to previous frame and stop speed to avoid glitches
+				transform.position = prevAlivePosition;
 				velocity.x = 0;
-				velocity.y=0;
+				velocity.y = 0;
 				return;
 			}
 		}
 		else
 		{
+			// All is well with the world
 			alive = true;
-			prevPosition = transform.position;
+			prevAlivePosition = transform.position;
 		}
 
 
-		// When the detected color is black for the first time, bounce back.
+		// When the detected color is blue for the first time, bounce back.
 		if ((groundColor == PowerColor.BLUE) && (prevGroundColor != PowerColor.BLUE))
 		{
 			// TODO detecter le gradient de bleu et appliquer la force en direction opposee
@@ -101,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
 			}
 			if (Input.GetButtonDown("Jump") && isGrounded)
 			{
-				velocity.y = (groundColor == PowerColor.RED) ? jumpSpeed * 3 : jumpSpeed;
+				velocity.y = (groundColor == PowerColor.YELLOW) ? jumpSpeed * 3 : jumpSpeed;
 			}
 
 		}
