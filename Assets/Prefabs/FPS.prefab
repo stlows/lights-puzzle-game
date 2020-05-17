@@ -223,7 +223,7 @@ MonoBehaviour:
       density: 0.01
       anisotropy: 0.5
       color: {r: 0.25, g: 0.25, b: 0.25, a: 1}
-      colorStrength: 0.25
+      colorStrength: 0
     _computeMaximumDepthComputeShader: {fileID: 7200000, guid: a5d52c8a306e8b746ab60b306575aa3e,
       type: 3}
     _processOcclusionMapShader: {fileID: 4800000, guid: b9b5b0990ea6cfa4d96c89a9c1cec3e9,

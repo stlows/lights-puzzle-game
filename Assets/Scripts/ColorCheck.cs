@@ -19,15 +19,6 @@ public class ColorCheck : MonoBehaviour
         
     }
 
-    double euclidianDistance(Color color1, Color color2)
-    {
-        double rDiff = color1.r - color2.r;
-        double gDiff = color1.g - color2.g;
-        double bDiff = color1.b - color2.b;
-        // https://stackoverflow.com/questions/1847092/given-an-rgb-value-what-would-be-the-best-way-to-find-the-closest-match-in-the-d
-        // Future improvement: use weighted approach?
-        return Math.Sqrt((rDiff * rDiff) + (gDiff * gDiff) + (bDiff * bDiff));
-    }
 
     // Update is called once per frame
     void Update()
@@ -47,24 +38,41 @@ public class ColorCheck : MonoBehaviour
 
         groundColor = tex.GetPixel(tex.width/2, tex.height/2);
 
-
-        Color[] colorArray = { 
-            Color.white, 
+        if ((groundColor.r == groundColor.b) && (groundColor.r == groundColor.g))
+        {
+            // If the color is a shade of grey, no powers 
+            // (this is to avoid glitches in transitions between black and white)
+            powerColor = PowerColor.WHITE; // No power.
+        }
+        else
+        {
+            Color[] colorArray = {
+            Color.white,
+            Color.black,
             Color.red,
             Color.green,
             Color.blue,
             Color.cyan,
             Color.magenta,
             Color.yellow
-        };
-        double[] distanceArray = new double[7];
+            };
+            double[] distanceArray = new double[8];
+            for (int i = 0; i < 8; i++)
+            {
+                distanceArray[i] = euclidianDistance(groundColor, colorArray[i]);
+            }
 
-
-        for (int i=0; i<7; i++)
-        {
-            distanceArray[i] = euclidianDistance(groundColor, colorArray[i]);
+            powerColor = (PowerColor)Array.IndexOf(distanceArray, distanceArray.Min());
         }
 
-        powerColor = (PowerColor) Array.IndexOf(distanceArray, distanceArray.Min());
+    }
+    private double euclidianDistance(Color color1, Color color2)
+    {
+        double rDiff = color1.r - color2.r;
+        double gDiff = color1.g - color2.g;
+        double bDiff = color1.b - color2.b;
+        // https://stackoverflow.com/questions/1847092/given-an-rgb-value-what-would-be-the-best-way-to-find-the-closest-match-in-the-d
+        // Future improvement: use weighted approach?
+        return Math.Sqrt((rDiff * rDiff) + (gDiff * gDiff) + (bDiff * bDiff));
     }
 }
