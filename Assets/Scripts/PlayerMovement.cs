@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Experimental.UIElements;
 
 public class PlayerMovement : MonoBehaviour
@@ -38,9 +39,10 @@ public class PlayerMovement : MonoBehaviour
 
 
 		// Check for black color
-		if (isGrounded && (groundColor.grayscale < 0.1))
+		if (isGrounded && (groundColor.grayscale < 0.1) && (Time.timeSinceLevelLoad > .5))
 		{
 			alive = false;
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
 		else
 		{
