@@ -15,8 +15,9 @@ public class PlayerMovement : MonoBehaviour
 	public LayerMask groundMask;
 	public bool alive = true;
 
-	private PowerColor groundColor;
-	private PowerColor prevGroundColor;
+	private PowerColor powerColor;
+	private PowerColor prevPowerColor;
+	private Color groundColor;
 	public Vector3 prevAlivePosition;
 	private Vector3 velocity;
 	private float groundDistance = 0.1f;
@@ -26,7 +27,8 @@ public class PlayerMovement : MonoBehaviour
 	void Update ()
 	{
 		// Update color the player is stading on (reads from ColorCheck.cs)
-		groundColor = gameObject.GetComponent<ColorCheck>().powerColor;
+		powerColor = gameObject.GetComponent<ColorCheck>().powerColor;
+		groundColor = gameObject.GetComponent<ColorCheck>().groundColor;
 
 		// Ground Check
 		Vector3 sphere_position = transform.position + Vector3.down * (controller.height * .5f - controller.radius);
@@ -36,34 +38,19 @@ public class PlayerMovement : MonoBehaviour
 
 
 		// Check for black color
-		if (isGrounded && (groundColor == PowerColor.BLACK))
+		if (isGrounded && (groundColor.grayscale < 0.1))
 		{
-			if (prevGroundColor == PowerColor.BLACK)
-			{ 
-				// If the color is black twice in a row (will happen on a jump),
-				// death
-				alive = false;
-			}
-			else
-			{
-				// If this is the first time that the color is black,
-				// Teleport to previous frame and stop speed to avoid glitches
-				transform.position = prevAlivePosition;
-				velocity.x = 0;
-				velocity.y = 0;
-				return;
-			}
+			alive = false;
 		}
 		else
 		{
 			// All is well with the world
 			alive = true;
-			prevAlivePosition = transform.position;
 		}
 
 
 		// When the detected color is blue for the first time, bounce back.
-		if ((groundColor == PowerColor.BLUE) && (prevGroundColor != PowerColor.BLUE))
+		if ((powerColor == PowerColor.BLUE) && (prevPowerColor != PowerColor.BLUE))
 		{
 			// TODO detecter le gradient de bleu et appliquer la force en direction opposee
 			velocity = -velocity.normalized * Math.Max(30, velocity.magnitude);
@@ -78,13 +65,13 @@ public class PlayerMovement : MonoBehaviour
 		else
 		{
 			// Lateral mouvement
-			if (isGrounded && (groundColor != PowerColor.CYAN))
+			if (isGrounded && (powerColor != PowerColor.CYAN))
 			{
 				float x = Input.GetAxis("Horizontal");
 				float z = Input.GetAxis("Vertical");
 
-				float actualMaxSpeed = (groundColor == PowerColor.GREEN) ? maxLateralSpeed * 3 : maxLateralSpeed;
-				float actualAcceleration = (groundColor == PowerColor.GREEN) ? lateralAcceleration * 3 : lateralAcceleration;
+				float actualMaxSpeed = (powerColor == PowerColor.GREEN) ? maxLateralSpeed * 3 : maxLateralSpeed;
+				float actualAcceleration = (powerColor == PowerColor.GREEN) ? lateralAcceleration * 3 : lateralAcceleration;
 
 				// Calculate velocity increase
 				Vector3 lateralVelocity = new Vector3(velocity.x, 0f, velocity.z);
@@ -102,17 +89,24 @@ public class PlayerMovement : MonoBehaviour
 			// Jump
 			if (isGrounded)
 			{
-				velocity.y = 0;
+				if ((powerColor == PowerColor.YELLOW) && (velocity.y < -3f))
+				{
+					velocity.y = -velocity.y;
+				}
+				else
+				{
+					velocity.y = 0;
+				}
 			}
 			if (Input.GetButtonDown("Jump") && isGrounded)
 			{
-				velocity.y = (groundColor == PowerColor.YELLOW) ? jumpSpeed * 3 : jumpSpeed;
+				velocity.y = (powerColor == PowerColor.YELLOW) ? jumpSpeed * 3 : jumpSpeed;
 			}
 
 		}
 
 		// Lateral Friction
-		if (isGrounded && (groundColor != PowerColor.CYAN))
+		if (isGrounded && (powerColor != PowerColor.CYAN))
 		{
 			// Friction en sqrt pour permettre aux grandes vitesses de rester plus longtemps
 			// Tres important pour la dynamique entre la couleur high speed et la couleur jump
@@ -125,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
 		// Update controller
 		controller.Move(velocity * Time.deltaTime);
 
-		// Remember current color for next update
-		prevGroundColor = groundColor;
+		// Remember power color for next frame
+		prevPowerColor = powerColor;
 	}
 }

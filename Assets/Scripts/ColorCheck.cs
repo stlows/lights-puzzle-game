@@ -50,7 +50,6 @@ public class ColorCheck : MonoBehaviour
 
         Color[] colorArray = { 
             Color.white, 
-            Color.black,
             Color.red,
             Color.green,
             Color.blue,
@@ -58,10 +57,10 @@ public class ColorCheck : MonoBehaviour
             Color.magenta,
             Color.yellow
         };
-        double[] distanceArray = new double[8];
+        double[] distanceArray = new double[7];
 
 
-        for (int i=0; i<8; i++)
+        for (int i=0; i<7; i++)
         {
             distanceArray[i] = euclidianDistance(groundColor, colorArray[i]);
         }

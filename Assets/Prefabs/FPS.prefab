@@ -71,7 +71,7 @@ MonoBehaviour:
   verticalAcceleration: -100
   maxLateralSpeed: 30
   jumpSpeed: 35
-  lateralFriction: 0.1
+  lateralFriction: 0.5
   groundMask:
     serializedVersion: 2
     m_Bits: 2048
