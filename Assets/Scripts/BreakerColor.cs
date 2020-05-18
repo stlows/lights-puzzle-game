@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using Boo.Lang.Environments;
 using UnityEngine;
  
-public class Breaker : MonoBehaviour
+public class BreakerColor : MonoBehaviour
 {
 
     public Light[] associatedLights;
-    public float openIntensity = 10f;
-    public float closeIntensity = 0f;
+    public Color openColor = Color.white;
+    public Color closeColor = Color.black;
     public bool isOpened = false;
 
     public MinimumDistance minimumDistance;
@@ -55,7 +55,7 @@ public class Breaker : MonoBehaviour
         arm.localEulerAngles = closedAngle;
         foreach (Light light in associatedLights)
         {
-            light.intensity = closeIntensity;
+            light.color = closeColor;
         }
     }
 
@@ -64,7 +64,7 @@ public class Breaker : MonoBehaviour
         arm.localEulerAngles = openedAngle;
         foreach (Light light in associatedLights)
         {
-            light.intensity = openIntensity;
+            light.color = openColor;
         }
     }
 }

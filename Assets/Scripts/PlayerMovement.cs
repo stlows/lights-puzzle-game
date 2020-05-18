@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Experimental.UIElements;
 
 public class PlayerMovement : MonoBehaviour
@@ -15,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
 	public float lateralFriction = 0.1f;
 	public LayerMask groundMask;
 	public bool alive = true;
+
+	public Death death;
 
 	private PowerColor powerColor;
 	private PowerColor prevPowerColor;
@@ -42,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 		if (isGrounded && (groundColor.grayscale < 0.1) && (Time.timeSinceLevelLoad > .5))
 		{
 			alive = false;
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			death.TriggerDeath();
 		}
 		else
 		{

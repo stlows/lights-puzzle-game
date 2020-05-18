@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1532480925075701011}
   - component: {fileID: 1532480925075701009}
   - component: {fileID: 5841170985613729897}
+  - component: {fileID: 1214835395180371498}
   m_Layer: 9
   m_Name: FPS
   m_TagString: Player
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1532480925075701010}
   m_LocalRotation: {x: 0, y: 0.92387956, z: 0, w: 0.38268343}
-  m_LocalPosition: {x: -40, y: 10, z: 40}
+  m_LocalPosition: {x: 0, y: 8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1532480925139446719}
@@ -92,6 +93,18 @@ MonoBehaviour:
   colorCheckTexture: {fileID: 8400000, guid: 6dfcd103a57bde04e9096dcf0e51a919, type: 2}
   groundColor: {r: 1, g: 1, b: 1, a: 0}
   powerColor: 0
+--- !u!114 &1214835395180371498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532480925075701010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62d3e48fb9a8cab45a40213afc4ec162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1532480925139446688
 GameObject:
   m_ObjectHideFlags: 0
