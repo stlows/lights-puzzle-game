@@ -11,6 +11,9 @@ public class TimedSwitch: MonoBehaviour
     public float closeIntensity = 0f;
     public bool isOpened = false;
     public float seconds = 10f;
+    public AudioSource audioStart;
+    public AudioSource audioDuring;
+
 
     public MinimumDistance minimumDistance;
 
@@ -65,7 +68,7 @@ public class TimedSwitch: MonoBehaviour
         {
             light.intensity = closeIntensity;
         }
-        gameObject.GetComponent<AudioSource>().Stop();
+        audioDuring.Stop();
     }
 
     void Open()
@@ -76,6 +79,7 @@ public class TimedSwitch: MonoBehaviour
         {
             light.intensity = openIntensity;
         }
-        gameObject.GetComponent<AudioSource>().Play();
+        audioStart.Play();
+        audioDuring.Play();
     }
 }

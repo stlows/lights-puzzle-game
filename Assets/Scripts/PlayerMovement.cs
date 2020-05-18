@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
 				float z = Input.GetAxis("Vertical");
 
 				float actualMaxSpeed = (powerColor == PowerColor.GREEN) ? maxLateralSpeed * 3 : maxLateralSpeed;
-				float actualAcceleration = (powerColor == PowerColor.GREEN) ? lateralAcceleration * 3 : lateralAcceleration;
+				float actualAcceleration = lateralAcceleration;
 
 				// Calculate velocity increase
 				Vector3 lateralVelocity = new Vector3(velocity.x, 0f, velocity.z);
