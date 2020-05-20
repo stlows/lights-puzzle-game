@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   associatedLights: []
+  audioSource: {fileID: 5483123202296877954}
   openColor: {r: 0, g: 1, b: 0.18643188, a: 1}
   closeColor: {r: 1, g: 0, b: 0, a: 1}
   isOpened: 0
@@ -165,6 +166,12 @@ PrefabInstance:
 --- !u!4 &2932315278045841405 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4921144966655636534, guid: b435296da706ea142b0776620fcd68cd,
+    type: 3}
+  m_PrefabInstance: {fileID: 7852807099861595083}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &5483123202296877954 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2372607502206492745, guid: b435296da706ea142b0776620fcd68cd,
     type: 3}
   m_PrefabInstance: {fileID: 7852807099861595083}
   m_PrefabAsset: {fileID: 0}

@@ -7,6 +7,7 @@ public class BreakerColor : MonoBehaviour
 {
 
     public Light[] associatedLights;
+    public AudioSource audioSource;
     public Color openColor = Color.white;
     public Color closeColor = Color.black;
     public bool isOpened = false;
@@ -46,7 +47,7 @@ public class BreakerColor : MonoBehaviour
         {
             Open();
         }
-        gameObject.GetComponent<AudioSource>().Play();
+        audioSource.Play();
         isOpened = !isOpened;
     }
 
