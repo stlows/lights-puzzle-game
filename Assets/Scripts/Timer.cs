@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Boo.Lang.Environments;
 using UnityEngine;
 
-public class TimedSwitch: MonoBehaviour
+public class Timer: MonoBehaviour
 {
 
     public Light[] associatedLights;
@@ -23,7 +23,7 @@ public class TimedSwitch: MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        knob = transform.Find("Rotating knob");
+        knob = transform.Find("Body").Find("Rotating knob");
         if (isOpened)
         {
             Open();

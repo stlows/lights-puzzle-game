@@ -20,7 +20,7 @@ public class BreakerColor : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        arm = transform.Find("ArmWrapper");
+        arm = transform.Find("Body").Find("ArmWrapper");
         if (isOpened)
         {
             Open();
