@@ -10,6 +10,5 @@ public class MinimumDistance : MonoBehaviour
     public bool Check()
     {
         return Vector3.Distance(player.position, transform.position) < minimumDistance;
-
     }
 }
