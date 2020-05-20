@@ -77,6 +77,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   alive: 1
+  death: {fileID: 1214835395180371498}
   prevAlivePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &5841170985613729897
 MonoBehaviour:
@@ -105,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62d3e48fb9a8cab45a40213afc4ec162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cheatMode: 0
 --- !u!1 &1532480925139446688
 GameObject:
   m_ObjectHideFlags: 0

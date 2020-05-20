@@ -7,6 +7,7 @@ public class Breaker : MonoBehaviour
 {
 
     public Light[] associatedLights;
+    public AudioSource audioSource;
     public float openIntensity = 10f;
     public float closeIntensity = 0f;
     public bool isOpened = false;
@@ -20,7 +21,7 @@ public class Breaker : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        arm = transform.Find("ArmWrapper");
+        arm = transform.Find("Body").Find("ArmWrapper");
         if (isOpened)
         {
             Open();
@@ -46,7 +47,7 @@ public class Breaker : MonoBehaviour
         {
             Open();
         }
-        gameObject.GetComponent<AudioSource>().Play();
+        audioSource.Play();
         isOpened = !isOpened;
     }
 
