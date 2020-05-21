@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce3bf1d01589f0b41aa9a1c4a8e644e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  associatedLights: []
+  lightTransforms: []
   isOpened: 0
   seconds: 2
   openColor: {r: 1, g: 1, b: 1, a: 1}
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f24a8e673f969b44956e41c8317cc89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumDistance: 8
+  minimumDistance: 12
 --- !u!65 &3390277880734189176
 BoxCollider:
   m_ObjectHideFlags: 0

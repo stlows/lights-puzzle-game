@@ -48,7 +48,6 @@ public class ColorCheck : MonoBehaviour
         {
             Color[] colorArray = {
             Color.white,
-            Color.black,
             Color.red,
             Color.green,
             Color.blue,
@@ -56,8 +55,8 @@ public class ColorCheck : MonoBehaviour
             Color.magenta,
             Color.yellow
             };
-            double[] distanceArray = new double[8];
-            for (int i = 0; i < 8; i++)
+            double[] distanceArray = new double[colorArray.Length];
+            for (int i = 0; i < colorArray.Length; i++)
             {
                 distanceArray[i] = euclidianDistance(groundColor, colorArray[i]);
             }
