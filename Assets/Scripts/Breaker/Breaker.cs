@@ -5,13 +5,14 @@ using UnityEngine;
  
 public abstract class Breaker : MonoBehaviour
 {
-
-    public Light[] associatedLights;
-    public AudioSource audioSource;
+    public Transform[] lightTransforms;
     public bool isOpened = false;
-    public MinimumDistance minimumDistance;
 
+    protected List<Light> associatedLights = new List<Light>();
+
+    private MinimumDistance minimumDistance;
     private Transform arm;
+    private AudioSource audioSource;
     private Vector3 closedAngle = new Vector3(-30, 0, 0);
     private Vector3 openedAngle = new Vector3(30, 0, 0);
 
@@ -19,7 +20,17 @@ public abstract class Breaker : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        // Extract Light components from provided Light transforms
+        foreach (Transform lightTransform in lightTransforms)
+        {
+            Light light = lightTransform.Find("Rotating").Find("Light").gameObject.GetComponent<Light>();
+            associatedLights.Add(light);
+        }
+        // Reach for important components in this game object
+        minimumDistance = gameObject.GetComponent<MinimumDistance>();
+        audioSource = transform.Find("Body").Find("Sound").gameObject.GetComponent<AudioSource>();
         arm = transform.Find("Body").Find("ArmWrapper");
+        // Starting position for the breaker
         if (isOpened)
         {
             Open();
@@ -32,6 +43,7 @@ public abstract class Breaker : MonoBehaviour
 	
     void OnMouseUp()
     {
+        // If the minimum distance requirement wasn't met, do nothing
         if (!minimumDistance.Check())
         {
             return;

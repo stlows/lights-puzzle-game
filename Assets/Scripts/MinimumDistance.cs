@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class MinimumDistance : MonoBehaviour
 {
-    public float minimumDistance;
-    public Transform player;
+    public float minimumDistance = 8f;
+    private Transform player;
+
+    void Start()
+    {
+        player = GameObject.Find("FPS").transform;
+    }
 
     public bool Check()
     {

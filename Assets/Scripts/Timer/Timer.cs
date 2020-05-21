@@ -5,23 +5,34 @@ using UnityEngine;
 
 public abstract class Timer: MonoBehaviour
 {
-      
-    public Light[] associatedLights;
+
+    public Transform[] lightTransforms;
     public bool isOpened = false;
     public float seconds = 10f;
-    public AudioSource audioStart;
-    public AudioSource audioDuring;
 
+    protected List<Light> associatedLights = new List<Light>();
 
-    public MinimumDistance minimumDistance;
-
-    protected Transform knob;
-    protected float timeOpened = 0;
+    private MinimumDistance minimumDistance;
+    private AudioSource audioStart;
+    private AudioSource audioDuring;
+    private Transform knob;
+    private float timeOpened = 0;
     
     // Use this for initialization
     void Start ()
     {
+        // Extract Light components from provided Light transforms
+        foreach (Transform lightTransform in lightTransforms)
+        {
+            Light light = lightTransform.Find("Rotating").Find("Light").gameObject.GetComponent<Light>();
+            associatedLights.Add(light);
+        }
+        // Reach for important components in this game object
+        minimumDistance = gameObject.GetComponent<MinimumDistance>();
+        audioStart = transform.Find("Body").Find("SoundStart").gameObject.GetComponent<AudioSource>();
+        audioDuring = transform.Find("Body").Find("SoundDuring").gameObject.GetComponent<AudioSource>();
         knob = transform.Find("Body").Find("Rotating knob");
+        // Start the timer or not
         if (isOpened)
         {
             Open();
@@ -36,14 +47,16 @@ public abstract class Timer: MonoBehaviour
     {
         if (isOpened)
         {
+            // Time elapsed since the timer has been turned on
             float timeElapsed = Time.time - timeOpened;
-            Debug.Log(timeElapsed);
             if (timeElapsed > seconds)
             {
+                // If the timer has been on for its entire duration, close.
                 Close();
             }
             else
             {
+                // Adjust angle of timer dial
                 knob.localEulerAngles = new Vector3(90f - (timeElapsed / seconds * 180f), 0, 0);
             }
         }
@@ -53,6 +66,7 @@ public abstract class Timer: MonoBehaviour
     {
         if (!minimumDistance.Check())
         {
+            // If the minimum distance requirement wasn't met, do nothing
             return;
         }
         Open();

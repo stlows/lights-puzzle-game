@@ -101,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2643748483372360872}
   m_Layer: 0
-  m_Name: Rotating cylinder (rotate this)
+  m_Name: Rotating
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -475,7 +475,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 4
   m_Range: 200
   m_SpotAngle: 60
   m_CookieSize: 10
@@ -552,7 +552,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1849416193428773094}
   m_Layer: 0
-  m_Name: Base (set to 0 rotation)
+  m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
