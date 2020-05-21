@@ -442,7 +442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6192744969822938207}
   - component: {fileID: 2597507284130488226}
-  - component: {fileID: 5001360635719704806}
+  - component: {fileID: 180291764660951978}
   m_Layer: 0
   m_Name: Light
   m_TagString: Untagged
@@ -502,7 +502,7 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &5001360635719704806
+--- !u!114 &180291764660951978
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -527,15 +527,15 @@ MonoBehaviour:
   storeShadowDataShader: {fileID: 4800000, guid: fff19db2423616b4dbabe995cd97279e,
     type: 3}
   shadowDataRenderTexture: {fileID: 0}
-  customDistanceFalloffThreshold: 0
-  customDistanceFalloffPower: 1
+  customDistanceFalloffThreshold: 0.5
+  customDistanceFalloffPower: 2
   storeDirectionalSpotLightCookieMapShader: {fileID: 4800000, guid: ffdac5434c39f7545b910c253007c8fc,
     type: 3}
   customCookieDistanceFalloffStartThreshold: 0.1
   customCookieDistanceFalloffEndThreshold: 0.25
   customCookieDistanceFalloffPower: 2
-  customAngularFalloffThreshold: 1
-  customAngularFalloffPower: 1
+  customAngularFalloffThreshold: 0.8
+  customAngularFalloffPower: 2
   storePointLightShadowMapShader: {fileID: 4800000, guid: f1531a9bd4087ff468de8de09f6ba126,
     type: 3}
   storePointLightShadowMapMesh: {fileID: 4300000, guid: d68bec3f4c08e40468fad98606344ea6,

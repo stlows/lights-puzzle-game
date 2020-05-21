@@ -48,10 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   associatedLights: []
   audioSource: {fileID: 5483123202296877954}
-  openColor: {r: 0, g: 1, b: 0.18643188, a: 1}
-  closeColor: {r: 1, g: 0, b: 0, a: 1}
   isOpened: 0
   minimumDistance: {fileID: 4835474133023651018}
+  openColor: {r: 1, g: 1, b: 1, a: 1}
+  closeColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &4835474133023651018
 MonoBehaviour:
   m_ObjectHideFlags: 0
