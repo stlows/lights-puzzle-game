@@ -5,22 +5,30 @@ using UnityEngine;
 
 public abstract class Timer: MonoBehaviour
 {
-      
-    public Light[] associatedLights;
+
+    public Transform[] lightTransforms;
     public bool isOpened = false;
     public float seconds = 10f;
-    public AudioSource audioStart;
-    public AudioSource audioDuring;
 
+    protected List<Light> associatedLights = new List<Light>();
 
-    public MinimumDistance minimumDistance;
-
-    protected Transform knob;
-    protected float timeOpened = 0;
+    private MinimumDistance minimumDistance;
+    private AudioSource audioStart;
+    private AudioSource audioDuring;
+    private Transform knob;
+    private float timeOpened = 0;
     
     // Use this for initialization
     void Start ()
     {
+        foreach (Transform lightTransform in lightTransforms)
+        {
+            Light light = lightTransform.Find("Rotating").Find("Light").gameObject.GetComponent<Light>();
+            associatedLights.Add(light);
+        }
+        minimumDistance = gameObject.GetComponent<MinimumDistance>();
+        audioStart = transform.Find("Body").Find("SoundStart").gameObject.GetComponent<AudioSource>();
+        audioDuring = transform.Find("Body").Find("SoundDuring").gameObject.GetComponent<AudioSource>();
         knob = transform.Find("Body").Find("Rotating knob");
         if (isOpened)
         {
@@ -37,7 +45,6 @@ public abstract class Timer: MonoBehaviour
         if (isOpened)
         {
             float timeElapsed = Time.time - timeOpened;
-            Debug.Log(timeElapsed);
             if (timeElapsed > seconds)
             {
                 Close();

@@ -49,9 +49,6 @@ MonoBehaviour:
   associatedLights: []
   isOpened: 0
   seconds: 10
-  audioStart: {fileID: 8835507071198978965}
-  audioDuring: {fileID: 8320067922372297013}
-  minimumDistance: {fileID: 3390277880734189179}
   openIntensity: 4
   closeIntensity: 0
 --- !u!114 &3390277880734189179
@@ -66,8 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f24a8e673f969b44956e41c8317cc89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumDistance: 25
-  player: {fileID: 1532480925075701008, guid: 4e2c84474291ff14ead2f88b1a440142, type: 3}
+  minimumDistance: 8
 --- !u!65 &3390277880734189176
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -163,18 +159,6 @@ PrefabInstance:
 --- !u!4 &702388452389114776 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 96114879583250282, guid: cca29f9d46e34f442ad750d83c148897,
-    type: 3}
-  m_PrefabInstance: {fileID: 642349442699965682}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &8320067922372297013 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 8907210610825147847, guid: cca29f9d46e34f442ad750d83c148897,
-    type: 3}
-  m_PrefabInstance: {fileID: 642349442699965682}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &8835507071198978965 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 8247238482855548775, guid: cca29f9d46e34f442ad750d83c148897,
     type: 3}
   m_PrefabInstance: {fileID: 642349442699965682}
   m_PrefabAsset: {fileID: 0}
