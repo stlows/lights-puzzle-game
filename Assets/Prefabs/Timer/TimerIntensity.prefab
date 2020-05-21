@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3390277880734189173}
-  - component: {fileID: 3390277880734189163}
+  - component: {fileID: 2429512040963314606}
   - component: {fileID: 3390277880734189179}
   - component: {fileID: 3390277880734189176}
   m_Layer: 0
@@ -34,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3390277880734189163
+--- !u!114 &2429512040963314606
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,18 +43,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 3390277880734189172}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad37a7f24b261e74e83058d6eb569875, type: 3}
+  m_Script: {fileID: 11500000, guid: d3a6af8066cba1c45b6cd3f0a766cd63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  associatedLights:
-  - {fileID: 0}
-  openIntensity: 10
-  closeIntensity: 0
+  associatedLights: []
   isOpened: 0
   seconds: 10
   audioStart: {fileID: 8835507071198978965}
   audioDuring: {fileID: 8320067922372297013}
   minimumDistance: {fileID: 3390277880734189179}
+  openIntensity: 4
+  closeIntensity: 0
 --- !u!114 &3390277880734189179
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using Boo.Lang.Environments;
 using UnityEngine;
  
-public class Breaker : MonoBehaviour
+public abstract class Breaker : MonoBehaviour
 {
 
     public Light[] associatedLights;
     public AudioSource audioSource;
-    public float openIntensity = 10f;
-    public float closeIntensity = 0f;
     public bool isOpened = false;
-
     public MinimumDistance minimumDistance;
 
     private Transform arm;
     private Vector3 closedAngle = new Vector3(-30, 0, 0);
     private Vector3 openedAngle = new Vector3(30, 0, 0);
+
 
     // Use this for initialization
     void Start ()
@@ -54,18 +52,17 @@ public class Breaker : MonoBehaviour
     void Close()
     {
         arm.localEulerAngles = closedAngle;
-        foreach (Light light in associatedLights)
-        {
-            light.intensity = closeIntensity;
-        }
+        CloseSpecific();
     }
 
     void Open()
     {
         arm.localEulerAngles = openedAngle;
-        foreach (Light light in associatedLights)
-        {
-            light.intensity = openIntensity;
-        }
+        OpenSpecific();
     }
+
+
+    public abstract void CloseSpecific();
+    public  abstract void OpenSpecific();
+
 }

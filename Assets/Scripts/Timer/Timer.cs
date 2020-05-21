@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using Boo.Lang.Environments;
 using UnityEngine;
 
-public class Timer: MonoBehaviour
+public abstract class Timer: MonoBehaviour
 {
-
+      
     public Light[] associatedLights;
-    public float openIntensity = 10f; 
-    public float closeIntensity = 0f;
     public bool isOpened = false;
     public float seconds = 10f;
     public AudioSource audioStart;
@@ -17,9 +15,9 @@ public class Timer: MonoBehaviour
 
     public MinimumDistance minimumDistance;
 
-    private Transform knob;
-    private float timeOpened = 0;
-
+    protected Transform knob;
+    protected float timeOpened = 0;
+    
     // Use this for initialization
     void Start ()
     {
@@ -60,13 +58,14 @@ public class Timer: MonoBehaviour
         Open();
     }
 
+
     void Close()
     {
         isOpened = false;
         knob.localEulerAngles = new Vector3(-90f, 0, 0);
         foreach (Light light in associatedLights)
         {
-            light.intensity = closeIntensity;
+            CloseSpecific();
         }
         audioDuring.Stop();
     }
@@ -77,9 +76,14 @@ public class Timer: MonoBehaviour
         timeOpened = Time.time;
         foreach (Light light in associatedLights)
         {
-            light.intensity = openIntensity;
+            OpenSpecific();
         }
         audioStart.Play();
         audioDuring.Play();
     }
+
+
+
+    public abstract void CloseSpecific();
+    public abstract void OpenSpecific();
 }
