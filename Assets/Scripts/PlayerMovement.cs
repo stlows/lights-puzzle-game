@@ -92,14 +92,15 @@ public class PlayerMovement : MonoBehaviour
 			// Jump
 			if (isGrounded)
 			{
-				if ((powerColor == PowerColor.YELLOW) && (velocity.y < -3f))
-				{
-					velocity.y = -velocity.y;
-				}
-				else
-				{
-					velocity.y = 0;
-				}
+				velocity.y = 0;
+				//if ((powerColor == PowerColor.YELLOW) && (velocity.y < -3f))
+				//{
+				//	velocity.y = -velocity.y;
+				//}
+				//else
+				//{
+				//	velocity.y = 0;
+				//}
 			}
 			if (Input.GetButtonDown("Jump") && isGrounded)
 			{

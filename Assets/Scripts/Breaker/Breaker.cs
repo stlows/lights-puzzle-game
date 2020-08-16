@@ -5,10 +5,8 @@ using UnityEngine;
  
 public abstract class Breaker : MonoBehaviour
 {
-    public Transform[] lightTransforms;
     public bool isOpened = false;
 
-    protected List<Light> associatedLights = new List<Light>();
 
     private MinimumDistance minimumDistance;
     private Transform arm;
@@ -18,14 +16,8 @@ public abstract class Breaker : MonoBehaviour
 
 
     // Use this for initialization
-    void Start ()
+    protected void BreakerStart()
     {
-        // Extract Light components from provided Light transforms
-        foreach (Transform lightTransform in lightTransforms)
-        {
-            Light light = lightTransform.Find("Rotating").Find("Light").gameObject.GetComponent<Light>();
-            associatedLights.Add(light);
-        }
         // Reach for important components in this game object
         minimumDistance = gameObject.GetComponent<MinimumDistance>();
         audioSource = transform.Find("Body").Find("Sound").gameObject.GetComponent<AudioSource>();
