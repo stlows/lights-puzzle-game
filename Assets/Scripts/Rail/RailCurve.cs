@@ -15,9 +15,17 @@ public class RailCurve : Rail
     // Start is called before the first frame update
     void Start()
     {
-        currentAngle = angleBegin;
-        transform.localEulerAngles = new Vector3(0, angleBegin, 0);
-        percentComplete = 0f;
+        if (isOpened)
+        {
+            currentAngle = angleEnd;
+            percentComplete = 1f;
+        }
+        else
+        {
+            currentAngle = angleBegin;
+            percentComplete = 0f;
+        }
+        transform.localEulerAngles = new Vector3(0, currentAngle, 0);
         totalAngle = angleEnd - angleBegin;
     }
 
@@ -70,4 +78,5 @@ public class RailCurve : Rail
             percentComplete = 1f;
         }
     }
+
 }

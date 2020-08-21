@@ -8,9 +8,14 @@ public class BreakerRail : Breaker
 
     private RailCurve railCurve;
 
-    void Start()
+    void Awake()
     {
         railCurve = railTransform.gameObject.GetComponent<RailCurve>();
+        railCurve.isOpened = isOpened;
+    }
+
+    void Start()
+    {
         BreakerStart();
     }
 

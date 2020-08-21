@@ -2068,24 +2068,6 @@ PrefabInstance:
       objectReference: {fileID: 1521441234}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52f346a748333e84e864995cec5006ad, type: 3}
---- !u!1 &1107547706 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6638152751818330957, guid: 4e2c84474291ff14ead2f88b1a440142,
-    type: 3}
-  m_PrefabInstance: {fileID: 28934425}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1107547708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1107547706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae41ceb2260bca4428d683fe5c61ef82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!43 &1238153988
 Mesh:
   m_ObjectHideFlags: 0
@@ -2276,7 +2258,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1466682523}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 81156bdea8d450f4e889f25d9da361b5, type: 3}

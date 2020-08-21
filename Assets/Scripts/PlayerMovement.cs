@@ -140,12 +140,14 @@ public class PlayerMovement : MonoBehaviour
 	}
 
     private void OnTriggerEnter()
-    {
+	{
+		Debug.Log("Trigenter");
 		ignoreFloor = true;
 		Physics.IgnoreLayerCollision(11, 13);
 	}
 	private void OnTriggerExit()
 	{
+		Debug.Log("Trigeexit");
 		ignoreFloor = false;
 		Physics.IgnoreLayerCollision(11, 13, false);
 		mySceneManager.Exit();
