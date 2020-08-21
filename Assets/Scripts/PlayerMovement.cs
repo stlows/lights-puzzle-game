@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Experimental.UIElements;
 
 public class PlayerMovement : MonoBehaviour
@@ -15,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
 	public LayerMask groundMask;
 	public bool alive = true;
 
-	public Death death;
 
 	private CharacterController controller;
 	private PowerColor powerColor;
@@ -26,10 +24,14 @@ public class PlayerMovement : MonoBehaviour
 	private float groundDistance = 0.1f;
 	private bool isGrounded;
 	private bool ignoreFloor = false;
+	private Death death;
+	private MySceneManager mySceneManager;
 
     private void Start()
 	{
 		controller = gameObject.GetComponent<CharacterController>();
+		death = gameObject.GetComponent<Death>();
+		mySceneManager = transform.Find("SceneManager").gameObject.GetComponent<MySceneManager>();
 	}
 
     // Update is called once per frame
@@ -144,15 +146,10 @@ public class PlayerMovement : MonoBehaviour
 	}
 	private void OnTriggerExit()
 	{
-		AudioSource audioExitTunnel;
-		audioExitTunnel = transform.Find("Sounds").Find("SoundExit").gameObject.GetComponent<AudioSource>();
-		audioExitTunnel.Play();
-
-		// Load next Scene
-		int currentLevelIndex = Int32.Parse(SceneManager.GetActiveScene().name.Substring(5));
-		SceneManager.LoadScene("Scenes/Level" + (currentLevelIndex + 1));
 		ignoreFloor = false;
 		Physics.IgnoreLayerCollision(11, 13, false);
+		mySceneManager.Exit();
 	}
+
 }
 
