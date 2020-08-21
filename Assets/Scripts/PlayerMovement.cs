@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Experimental.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public CharacterController controller;
 	public float lateralAcceleration = 500f;
 	public float verticalAcceleration = -100f; // gravity
 	public float maxLateralSpeed = 30f;
@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
 	public Death death;
 
+	private CharacterController controller;
 	private PowerColor powerColor;
 	private PowerColor prevPowerColor;
 	private Color groundColor;
@@ -24,9 +25,15 @@ public class PlayerMovement : MonoBehaviour
 	private Vector3 velocity;
 	private float groundDistance = 0.1f;
 	private bool isGrounded;
+	private bool ignoreFloor = false;
 
-	// Update is called once per frame
-	void Update ()
+    private void Start()
+	{
+		controller = gameObject.GetComponent<CharacterController>();
+	}
+
+    // Update is called once per frame
+    void Update ()
 	{
 		// Update color the player is stading on (reads from ColorCheck.cs)
 		powerColor = gameObject.GetComponent<ColorCheck>().powerColor;
@@ -36,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
 		Vector3 sphere_position = transform.position + Vector3.down * (controller.height * .5f - controller.radius);
 		float sphere_radius = controller.radius + groundDistance;
 		isGrounded = Physics.CheckSphere(sphere_position, sphere_radius, groundMask);
-
 
 
 		// Check for black color
@@ -92,7 +98,11 @@ public class PlayerMovement : MonoBehaviour
 			// Jump
 			if (isGrounded)
 			{
-				velocity.y = 0;
+
+				if (!ignoreFloor)
+				{
+					velocity.y = 0;
+				}
 				//if ((powerColor == PowerColor.YELLOW) && (velocity.y < -3f))
 				//{
 				//	velocity.y = -velocity.y;
@@ -126,4 +136,23 @@ public class PlayerMovement : MonoBehaviour
 		// Remember power color for next frame
 		prevPowerColor = powerColor;
 	}
+
+    private void OnTriggerEnter()
+    {
+		ignoreFloor = true;
+		Physics.IgnoreLayerCollision(11, 13);
+	}
+	private void OnTriggerExit()
+	{
+		AudioSource audioExitTunnel;
+		audioExitTunnel = transform.Find("Sounds").Find("SoundExit").gameObject.GetComponent<AudioSource>();
+		audioExitTunnel.Play();
+
+		// Load next Scene
+		int currentLevelIndex = Int32.Parse(SceneManager.GetActiveScene().name.Substring(5));
+		SceneManager.LoadScene("Scenes/Level" + (currentLevelIndex + 1));
+		ignoreFloor = false;
+		Physics.IgnoreLayerCollision(11, 13, false);
+	}
 }
+
