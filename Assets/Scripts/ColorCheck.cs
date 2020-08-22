@@ -12,17 +12,22 @@ public class ColorCheck : MonoBehaviour
     public PowerColor powerColor;
 
     private Texture2D tex;
+    private PowerColor previousPowerColor = PowerColor.WHITE;
+    private AudioSource greenAudio;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        greenAudio = transform.Find("Sounds").Find("Green").gameObject.GetComponent<AudioSource>();
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        // Remember current power color
+        previousPowerColor = powerColor;
+
         // Remember currently active render texture
         RenderTexture currentActiveRT = RenderTexture.active;
 
@@ -64,6 +69,11 @@ public class ColorCheck : MonoBehaviour
             powerColor = (PowerColor)Array.IndexOf(distanceArray, distanceArray.Min());
         }
 
+        if (previousPowerColor != powerColor)
+        {
+            PlayColorSound();
+        }
+
     }
     private double euclidianDistance(Color color1, Color color2)
     {
@@ -73,5 +83,19 @@ public class ColorCheck : MonoBehaviour
         // https://stackoverflow.com/questions/1847092/given-an-rgb-value-what-would-be-the-best-way-to-find-the-closest-match-in-the-d
         // Future improvement: use weighted approach?
         return Math.Sqrt((rDiff * rDiff) + (gDiff * gDiff) + (bDiff * bDiff));
+    }
+
+    private void PlayColorSound()
+    {
+        if (powerColor == PowerColor.GREEN)
+        {
+            Debug.Log(previousPowerColor);
+            greenAudio.Play();
+        }
+        else
+        {
+            Debug.Log("white");
+            greenAudio.Stop();
+        }
     }
 }

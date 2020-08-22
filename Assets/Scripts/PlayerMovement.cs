@@ -6,6 +6,7 @@ using UnityEngine.Experimental.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
+	public MySceneManager mySceneManager;
 	public float lateralAcceleration = 500f;
 	public float verticalAcceleration = -100f; // gravity
 	public float maxLateralSpeed = 30f;
@@ -25,13 +26,11 @@ public class PlayerMovement : MonoBehaviour
 	private bool isGrounded;
 	private bool ignoreFloor = false;
 	private Death death;
-	private MySceneManager mySceneManager;
 
     private void Start()
 	{
 		controller = gameObject.GetComponent<CharacterController>();
 		death = gameObject.GetComponent<Death>();
-		mySceneManager = transform.Find("SceneManager").gameObject.GetComponent<MySceneManager>();
 	}
 
     // Update is called once per frame
@@ -48,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 		// Check for black color
-		if (isGrounded && (groundColor.grayscale < 0.1) && (Time.timeSinceLevelLoad > .5))
+		if (isGrounded && (groundColor.grayscale < 0.07) && (Time.timeSinceLevelLoad > .5))
 		{
 			alive = false;
 			death.TriggerDeath();
