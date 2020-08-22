@@ -139,18 +139,26 @@ public class PlayerMovement : MonoBehaviour
 		prevPowerColor = powerColor;
 	}
 
-    private void OnTriggerEnter()
+
+
+	private void OnTriggerEnter(Collider hit)
 	{
-		Debug.Log("Trigenter");
-		ignoreFloor = true;
-		Physics.IgnoreLayerCollision(11, 13);
+		if (hit.gameObject.CompareTag("Finish"))
+		{
+			Debug.Log("TrigEnter");
+			ignoreFloor = true;
+			Physics.IgnoreLayerCollision(11, 13);
+		}
 	}
-	private void OnTriggerExit()
+	private void OnTriggerExit(Collider hit)
 	{
-		Debug.Log("Trigeexit");
-		ignoreFloor = false;
-		Physics.IgnoreLayerCollision(11, 13, false);
-		mySceneManager.Exit();
+		if (hit.gameObject.CompareTag("Finish"))
+		{
+			Debug.Log("TrigExit");
+			ignoreFloor = false;
+			Physics.IgnoreLayerCollision(11, 13, false);
+			mySceneManager.Exit();
+		}
 	}
 
 }
