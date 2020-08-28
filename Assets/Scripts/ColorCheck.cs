@@ -89,12 +89,10 @@ public class ColorCheck : MonoBehaviour
     {
         if (powerColor == PowerColor.GREEN)
         {
-            Debug.Log(previousPowerColor);
             greenAudio.Play();
         }
         else
         {
-            Debug.Log("white");
             greenAudio.Stop();
         }
     }

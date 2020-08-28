@@ -6,16 +6,17 @@ using UnityEngine.Experimental.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
-	public MySceneManager mySceneManager;
 	public float lateralAcceleration = 500f;
 	public float verticalAcceleration = -100f; // gravity
 	public float maxLateralSpeed = 30f;
 	public float jumpSpeed = 35f;
 	public float lateralFriction = 0.1f;
 	public LayerMask groundMask;
-	public bool alive = true;
+	public bool ignoreFloor = false;
+	public float startSpeed;
+	public float lethalGrayScale = 0.1f;
 
-
+	private MySceneManager mySceneManager;
 	private CharacterController controller;
 	private PowerColor powerColor;
 	private PowerColor prevPowerColor;
@@ -24,13 +25,15 @@ public class PlayerMovement : MonoBehaviour
 	private Vector3 velocity;
 	private float groundDistance = 0.1f;
 	private bool isGrounded;
-	private bool ignoreFloor = false;
+	private bool isShadowed;
 	private Death death;
 
     private void Start()
 	{
 		controller = gameObject.GetComponent<CharacterController>();
 		death = gameObject.GetComponent<Death>();
+		velocity = new Vector3(0, startSpeed, 0);
+		mySceneManager = GameObject.Find("/SceneManager").GetComponent<MySceneManager>();
 	}
 
     // Update is called once per frame
@@ -47,15 +50,22 @@ public class PlayerMovement : MonoBehaviour
 
 
 		// Check for black color
-		if (isGrounded && (groundColor.grayscale < 0.07) && (Time.timeSinceLevelLoad > .5))
+		if (isGrounded && (groundColor.grayscale < lethalGrayScale) && (Time.timeSinceLevelLoad > .5))
 		{
-			alive = false;
-			death.TriggerDeath();
+			isShadowed = true;
+		}
+        else
+        {
+			isShadowed = false;
+        }
+
+		if (isShadowed)
+		{
+			death.GoToDeath(groundColor);
 		}
 		else
 		{
-			// All is well with the world
-			alive = true;
+			death.GoToAlive(groundColor);
 		}
 
 
@@ -97,25 +107,20 @@ public class PlayerMovement : MonoBehaviour
 			}
 
 			// Jump
-			if (isGrounded)
+			if (ignoreFloor)
+            {
+				velocity.y = -death.fallSpeed;
+			}
+			else
 			{
-
-				if (!ignoreFloor)
+				if (isGrounded)
 				{
 					velocity.y = 0;
 				}
-				//if ((powerColor == PowerColor.YELLOW) && (velocity.y < -3f))
-				//{
-				//	velocity.y = -velocity.y;
-				//}
-				//else
-				//{
-				//	velocity.y = 0;
-				//}
-			}
-			if (Input.GetButtonDown("Jump") && isGrounded)
-			{
-				velocity.y = (powerColor == PowerColor.YELLOW) ? jumpSpeed * 3 : jumpSpeed;
+				if (Input.GetButtonDown("Jump") && isGrounded)
+				{
+					velocity.y = (powerColor == PowerColor.YELLOW) ? jumpSpeed * 3 : jumpSpeed;
+				}
 			}
 
 		}
@@ -129,7 +134,10 @@ public class PlayerMovement : MonoBehaviour
 			velocity.z -= lateralFriction * Math.Sign(velocity.z) * (float) Math.Sqrt(Math.Abs(velocity.z));
 		}
 		// Gravity
-		velocity.y += verticalAcceleration * Time.deltaTime;
+		if (!ignoreFloor)
+		{
+			velocity.y += verticalAcceleration * Time.deltaTime;
+		}
 		
 		// Update controller
 		controller.Move(velocity * Time.deltaTime);
@@ -156,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
 			Debug.Log("TrigExit");
 			ignoreFloor = false;
 			Physics.IgnoreLayerCollision(11, 13, false);
-			mySceneManager.Exit();
+			mySceneManager.Exit(false);
 		}
 	}
 

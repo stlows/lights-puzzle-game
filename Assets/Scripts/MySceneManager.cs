@@ -6,37 +6,40 @@ using UnityEngine;
 
 public class MySceneManager : MonoBehaviour
 {
-    private AudioSource audioExitTunnel;
+    public int currentLevelIndex;
     private bool exiting;
+    private int loadIncrement;
+    //private AudioSource nextLevelAudioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Start");
-        audioExitTunnel = transform.Find("SoundExit").gameObject.GetComponent<AudioSource>();
+        currentLevelIndex = Int32.Parse(SceneManager.GetActiveScene().name.Substring(5));
+        exiting = false;
+        loadIncrement = 0;
+        //nextLevelAudioSource = AudioManager.instance.Find("nextLevel").source;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (exiting && !audioExitTunnel.isPlaying)
-        {
-            Debug.Log("exiting");
-            Debug.Log(exiting);
-            Debug.Log("audioExitTunnel.isPlaying");
-            Debug.Log(audioExitTunnel.isPlaying);
-            // Load next Scene
-            int currentLevelIndex = Int32.Parse(SceneManager.GetActiveScene().name.Substring(5));
-            SceneManager.LoadScene("Scenes/Level" + (currentLevelIndex + 1));
-        }
+
+        ////Load next scene if the exit tunnel sound is over, as well as exiting == true as a safeguard
+        //if (exiting && !nextLevelAudioSource.isPlaying)
+        //{
+        //    //Load next Scene
+        //    SceneManager.LoadScene("Scenes/Level" + (currentLevelIndex + loadIncrement));
+        //}
 
 
     }
 
-    public void Exit()
+    public void Exit(bool restart)
     {
-        Debug.Log("Exit");
-        audioExitTunnel.Play();
+        loadIncrement = restart ? 0 : 1;
+        // Exit has been triggered by player entering tunnel.
+        AudioManager.instance.Play("nextLevel");
         exiting = true;
     }
 
