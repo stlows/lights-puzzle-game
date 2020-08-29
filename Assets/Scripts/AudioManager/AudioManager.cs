@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-
 	public static AudioManager instance;
-
-	public AudioMixerGroup mixerGroup;
-
 	public Sound[] sounds;
 
-	void Awake()
+	[HideInInspector]
+	public Sound currentSoundtrack;
+
+	private void Awake()
 	{
 		if (instance != null)
 		{
@@ -28,31 +27,34 @@ public class AudioManager : MonoBehaviour
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
             s.source.loop = s.loop;
-
-			s.source.outputAudioMixerGroup = mixerGroup;
 		}
 	}
 
-	private void Start()
+    private void Start()
 	{
-		Play("music_gliding");
+		currentSoundtrack = Find("intruder-theme");
+		Play("intruder-theme");
 	}
 
-	public void Play(string sound)
+    public void Play(string name)
 	{
-		Sound s = Array.Find(sounds, item => item.name == sound);
-		if (s == null)
+		if (currentSoundtrack.source.isPlaying)
 		{
-			Debug.LogWarning("Sound: " + name + " not found!");
-			return;
+			currentSoundtrack.source.Stop();
 		}
-		s.source.Play();
+		currentSoundtrack = Find(name);
+		currentSoundtrack.source.volume = currentSoundtrack.volume;
+		currentSoundtrack.source.pitch = currentSoundtrack.pitch;
+		currentSoundtrack.source.Play();
 	}
 
-    //public Sound Find(string sound)
-    //{
-    //    return Array.Find(sounds, item => item.name == sound);
-    //}
+    public Sound Find(string name)
+    {
+		Sound s = Array.Find(sounds, item => item.name == name);
+		if (s == null)
+			Debug.LogWarning("Sound: " + name + " not found!");
+		return s;
+	}
 
 
 }

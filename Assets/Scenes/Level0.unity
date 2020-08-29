@@ -9800,14 +9800,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edb703bc1b9f1e4449f1844f29d95c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixerGroup: {fileID: 0}
   sounds:
-  - name: music_gliding
-    clip: {fileID: 0}
+  - name: gliding
+    clip: {fileID: 8300000, guid: a3ddfdb9de334654b843580c64120214, type: 3}
     volume: 1
     pitch: 1
     loop: 1
-    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: intruder-theme
+    clip: {fileID: 8300000, guid: 81156bdea8d450f4e889f25d9da361b5, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: electrobeat
+    clip: {fileID: 8300000, guid: 6985e9e845672ee41b8f532987a8d2d4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
     source: {fileID: 0}
 --- !u!1 &3908432093974116481
 GameObject:

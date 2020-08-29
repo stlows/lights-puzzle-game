@@ -8425,6 +8425,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7623679320234892028, guid: ace799fb421d87041a6e2293f77edd60,
+        type: 3}
+      propertyPath: newSoundtrack
+      value: stop
+      objectReference: {fileID: 0}
     - target: {fileID: 7623679320234892029, guid: ace799fb421d87041a6e2293f77edd60,
         type: 3}
       propertyPath: m_LocalPosition.x

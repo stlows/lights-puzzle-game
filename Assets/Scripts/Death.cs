@@ -31,6 +31,7 @@ public class Death : MonoBehaviour
 
         blackFade.color = Color.black;
         blackFade.canvasRenderer.SetAlpha(0f);
+        deathFinal = false;
     }
 
 
