@@ -1074,7 +1074,7 @@ PrefabInstance:
     - target: {fileID: 4271971428642320322, guid: 661f04de56a0d574db7f4bd6b4bb3849,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4271971428642320322, guid: 661f04de56a0d574db7f4bd6b4bb3849,
         type: 3}
@@ -2428,75 +2428,6 @@ Light:
     type: 3}
   m_PrefabInstance: {fileID: 343940950}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1467340040
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7474280135742925954, guid: 241837d43aa7dd34b9f9b3726682a156,
-        type: 3}
-      propertyPath: m_Name
-      value: SelectionManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 7474280135742925956, guid: 241837d43aa7dd34b9f9b3726682a156,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7474280135742925956, guid: 241837d43aa7dd34b9f9b3726682a156,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7474280135742925956, guid: 241837d43aa7dd34b9f9b3726682a156,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7474280135742925956, guid: 241837d43aa7dd34b9f9b3726682a156,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7474280135742925956, guid: 241837d43aa7dd34b9f9b3726682a156,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7474280135742925956, guid: 241837d43aa7dd34b9f9b3726682a156,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7474280135742925956, guid: 241837d43aa7dd34b9f9b3726682a156,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7474280135742925956, guid: 241837d43aa7dd34b9f9b3726682a156,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7474280135742925956, guid: 241837d43aa7dd34b9f9b3726682a156,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7474280135742925956, guid: 241837d43aa7dd34b9f9b3726682a156,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7474280135742925956, guid: 241837d43aa7dd34b9f9b3726682a156,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 241837d43aa7dd34b9f9b3726682a156, type: 3}
 --- !u!1001 &1473888424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2926,7 +2857,7 @@ Transform:
   - {fileID: 12007781}
   - {fileID: 1034533185}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1574107192
 PrefabInstance:
@@ -4179,7 +4110,7 @@ Transform:
   - {fileID: 495514718}
   - {fileID: 343940951}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1774420860 stripped
 Transform:
@@ -5821,7 +5752,7 @@ PrefabInstance:
     - target: {fileID: 1137169575420434663, guid: 39caf9061c323194b8a45883d5a2e08c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1137169575420434663, guid: 39caf9061c323194b8a45883d5a2e08c,
         type: 3}
@@ -6036,7 +5967,7 @@ Transform:
   - {fileID: 1956039063}
   - {fileID: 13126673}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &399374211162994318
 PrefabInstance:
@@ -6088,7 +6019,7 @@ PrefabInstance:
     - target: {fileID: 399374211897644555, guid: 144ab71eef6dabf48a738e06652c1f84,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 399374211897644555, guid: 144ab71eef6dabf48a738e06652c1f84,
         type: 3}
@@ -9871,85 +9802,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mixerGroup: {fileID: 0}
   sounds:
-  - name: nextLevel
-    clip: {fileID: 8300000, guid: 7bbb6f8ed2026494f8fb3dcb49da0a0f, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: death
-    clip: {fileID: 8300000, guid: 69fc1e12c14d3194c8109396cb7054bc, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: greenSound
-    clip: {fileID: 8300000, guid: bdb7aefda6906c54fbaef6c44f1ad2fc, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 1
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: redSound
-    clip: {fileID: 8300000, guid: 1217b3a5d171bf44dbd5f536041a1a98, type: 3}
-    volume: 0
-    pitch: 1
-    loop: 1
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: blueSound
-    clip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    loop: 1
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: yellowSound
-    clip: {fileID: 8300000, guid: 4ef4d654b85d473499f3853c460d7d47, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 1
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: magentaSound
-    clip: {fileID: 8300000, guid: 6f00f49dd5981f84586b114325e57e8c, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 1
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: cyanSound
-    clip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    loop: 1
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: music_intruder-theme
-    clip: {fileID: 8300000, guid: 81156bdea8d450f4e889f25d9da361b5, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 1
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: music_electrobeat
-    clip: {fileID: 8300000, guid: 6985e9e845672ee41b8f532987a8d2d4, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 1
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
   - name: music_gliding
     clip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    loop: 1
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: music_horrortriplets
-    clip: {fileID: 8300000, guid: db1e14c4b52e345448d56ead4159f26e, type: 3}
     volume: 1
     pitch: 1
     loop: 1

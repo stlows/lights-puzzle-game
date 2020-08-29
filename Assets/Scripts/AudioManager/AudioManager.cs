@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
 
 	private void Start()
 	{
-		//Play("music_gliding");
+		Play("music_gliding");
 	}
 
 	public void Play(string sound)
