@@ -45,12 +45,15 @@ public class MySceneManager : MonoBehaviour
 
     }
 
-    public void Exit(bool restart)
+    public void Exit(bool goToNextLevel)
     {
-        loadIncrement = restart ? 0 : 1;
         // Exit has been triggered by player entering tunnel.
-        nextLevelAudioSource.Play();
-        exiting = true;
+        if (!exiting)
+        {
+            loadIncrement = goToNextLevel ? 1 : 0;
+            nextLevelAudioSource.Play();
+            exiting = true;
+        }
     }
 
 

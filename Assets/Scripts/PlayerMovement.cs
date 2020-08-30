@@ -9,12 +9,12 @@ public class PlayerMovement : MonoBehaviour
 	public float lateralAcceleration = 500f;
 	public float verticalAcceleration = -100f; // gravity
 	public float maxLateralSpeed = 30f;
+	public float minVerticalSpeed;
 	public float jumpSpeed = 35f;
 	public float lateralFriction = 0.1f;
 	public LayerMask groundMask;
-	public bool ignoreFloor = false;
+	public bool goToNextLevel = false;
 	public float startSpeed;
-	public float lethalGrayScale = 0.1f;
 
 	private MySceneManager mySceneManager;
 	private CharacterController controller;
@@ -49,8 +49,8 @@ public class PlayerMovement : MonoBehaviour
 		isGrounded = Physics.CheckSphere(sphere_position, sphere_radius, groundMask);
 
 
-		// Check for black color
-		if (isGrounded && (groundColor.grayscale < lethalGrayScale) && (Time.timeSinceLevelLoad > .5))
+		// Black color check: too dark of a grayscale means the player is shadowed and starts falling
+		if (isGrounded && (groundColor.grayscale < death.lethalGrayScale))
 		{
 			isShadowed = true;
 		}
@@ -59,7 +59,9 @@ public class PlayerMovement : MonoBehaviour
 			isShadowed = false;
         }
 
-		if (isShadowed)
+		// If the player is in the dark or enters the exit tunnel, 
+		// Start the "falling through the floor" effect
+		if (isShadowed || goToNextLevel)
 		{
 			death.GoToDeath(groundColor);
 		}
@@ -85,42 +87,41 @@ public class PlayerMovement : MonoBehaviour
 		else
 		{
 			// Lateral mouvement
-			if (isGrounded && (powerColor != PowerColor.CYAN))
+			if (isGrounded)
 			{
-				float x = Input.GetAxis("Horizontal");
-				float z = Input.GetAxis("Vertical");
-
-				float actualMaxSpeed = (powerColor == PowerColor.GREEN) ? maxLateralSpeed * 3 : maxLateralSpeed;
-				float actualAcceleration = lateralAcceleration;
-
-				// Calculate velocity increase
-				Vector3 lateralVelocity = new Vector3(velocity.x, 0f, velocity.z);
-				Vector3 newSpeed = lateralVelocity + (actualAcceleration * Time.deltaTime * (transform.right * x + transform.forward * z));
-
-				// Apply increase to x and z while making sure they don't go over the max speed
-				if (newSpeed.magnitude <= actualMaxSpeed)
+				if (powerColor != PowerColor.CYAN)
 				{
-					velocity.x = newSpeed.x;
-					velocity.z = newSpeed.z;
+					float x = Input.GetAxis("Horizontal");
+					float z = Input.GetAxis("Vertical");
+
+					float actualMaxSpeed = (powerColor == PowerColor.GREEN) ? maxLateralSpeed * 3 : maxLateralSpeed;
+					float actualAcceleration = lateralAcceleration;
+
+					// Calculate velocity increase
+					Vector3 lateralVelocity = new Vector3(velocity.x, 0f, velocity.z);
+					Vector3 newSpeed = lateralVelocity + (actualAcceleration * Time.deltaTime * (transform.right * x + transform.forward * z));
+
+					// Apply increase to x and z while making sure they don't go over the max speed
+					if (newSpeed.magnitude <= actualMaxSpeed)
+					{
+						velocity.x = newSpeed.x;
+						velocity.z = newSpeed.z;
+					}
 				}
+			}
+			else
+			{
 
 			}
 
 			// Jump
-			if (ignoreFloor)
-            {
-				velocity.y = -death.fallSpeed;
-			}
-			else
+			if (isGrounded)
 			{
-				if (isGrounded)
-				{
-					velocity.y = 0;
-				}
-				if (Input.GetButtonDown("Jump") && isGrounded)
-				{
-					velocity.y = (powerColor == PowerColor.YELLOW) ? jumpSpeed * 3 : jumpSpeed;
-				}
+				velocity.y = 0;
+			}
+			if (Input.GetButtonDown("Jump") && isGrounded)
+			{
+				velocity.y = (powerColor == PowerColor.YELLOW) ? jumpSpeed * 3 : jumpSpeed;
 			}
 
 		}
@@ -133,11 +134,10 @@ public class PlayerMovement : MonoBehaviour
 			velocity.x -= lateralFriction * Math.Sign(velocity.x) * (float) Math.Sqrt(Math.Abs(velocity.x));
 			velocity.z -= lateralFriction * Math.Sign(velocity.z) * (float) Math.Sqrt(Math.Abs(velocity.z));
 		}
+
 		// Gravity
-		if (!ignoreFloor)
-		{
-			velocity.y += verticalAcceleration * Time.deltaTime;
-		}
+		velocity.y += verticalAcceleration * Time.deltaTime;
+		velocity.y = Math.Max(velocity.y, minVerticalSpeed);
 		
 		// Update controller
 		controller.Move(velocity * Time.deltaTime);
@@ -152,19 +152,8 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (hit.gameObject.CompareTag("Finish"))
 		{
-			Debug.Log("TrigEnter");
-			ignoreFloor = true;
-			Physics.IgnoreLayerCollision(11, 13);
-		}
-	}
-	private void OnTriggerExit(Collider hit)
-	{
-		if (hit.gameObject.CompareTag("Finish"))
-		{
-			Debug.Log("TrigExit");
-			ignoreFloor = false;
-			Physics.IgnoreLayerCollision(11, 13, false);
-			mySceneManager.Exit(false);
+			Debug.Log("TrigNextLevel");
+			goToNextLevel = true;
 		}
 	}
 

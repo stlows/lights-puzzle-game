@@ -68,18 +68,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25707291db5823746a27628bbdf3fedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mySceneManager: {fileID: 0}
   lateralAcceleration: 500
   verticalAcceleration: -100
   maxLateralSpeed: 30
+  minVerticalSpeed: -300
   jumpSpeed: 35
-  lateralFriction: 0.5
+  lateralFriction: 1
   groundMask:
     serializedVersion: 2
     m_Bits: 2048
-  ignoreFloor: 0
+  goToNextLevel: 0
   startSpeed: 0
-  lethalGrayScale: 0.1
   prevAlivePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &5841170985613729897
 MonoBehaviour:
@@ -110,7 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cheatMode: 0
   fallSpeed: 40
-  blackFade: {fileID: 0}
+  lethalGrayScale: 0.1
 --- !u!1 &1532480925139446688
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,7 +411,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

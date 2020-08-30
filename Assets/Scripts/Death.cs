@@ -9,7 +9,8 @@ public class Death : MonoBehaviour
 {
     public bool cheatMode = false;
     public float fallSpeed;
-    
+    public float lethalGrayScale = 0.1f;
+
     private Image blackFade;
     private MySceneManager mySceneManager;
     private GameObject mainCamera;
@@ -41,7 +42,7 @@ public class Death : MonoBehaviour
         // Camera creeps downwards, until it reaches 0, where death is final
         if (mainCamera.transform.localPosition.y < cameraHeightRange.x+0.01f)
         {
-            if (!cheatMode)
+            if (!cheatMode || player.goToNextLevel)
             {
                 deathFinal = true;
                 FinalizeDeath();
@@ -67,6 +68,6 @@ public class Death : MonoBehaviour
     {
         //blackFade.CrossFadeAlpha(1f, 0.1f, true);
         blackFade.canvasRenderer.SetAlpha(1f);
-        mySceneManager.Exit(true);
+        mySceneManager.Exit(player.goToNextLevel);
     }
 }
