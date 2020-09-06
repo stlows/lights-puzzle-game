@@ -70,16 +70,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lateralAcceleration: 500
   verticalAcceleration: -100
-  maxLateralSpeed: 30
+  maxLateralSpeed: 25
   minVerticalSpeed: -300
+  airBonusSpeed: 300
   jumpSpeed: 35
-  lateralFriction: 1
+  lateralFriction: 0.5
   groundMask:
     serializedVersion: 2
     m_Bits: 2048
   goToNextLevel: 0
   startSpeed: 0
   prevAlivePosition: {x: 0, y: 0, z: 0}
+  wasGrounded: 0
 --- !u!114 &5841170985613729897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,7 +111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cheatMode: 0
   fallSpeed: 40
-  lethalGrayScale: 0.1
+  lethalGrayScale: 0.02
+  deathFinal: 0
 --- !u!1 &1532480925139446688
 GameObject:
   m_ObjectHideFlags: 0

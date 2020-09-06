@@ -37,4 +37,11 @@ public class BreakerIntensity : Breaker
             light.intensity = openIntensity;
         }
     }
+    public override void OnClickSpecific()
+    {
+    }
+
+    public override void AfterDelaySpecific()
+    {
+    }
 }

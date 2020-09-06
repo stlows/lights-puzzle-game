@@ -35,4 +35,11 @@ public class BreakerColor : Breaker
             light.color = openColor;
         }
     }
+    public override void OnClickSpecific()
+    {
+    }
+
+    public override void AfterDelaySpecific()
+    {
+    }
 }

@@ -32,7 +32,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
 	{
-		currentSoundtrack = Find("intruder-theme");
+		currentSoundtrack = Find("gliding");
 	}
 
     public void Play(string name)

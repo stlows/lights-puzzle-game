@@ -6,17 +6,26 @@ public abstract class Rail : MonoBehaviour
 {
     public float percentComplete;
     public bool isOpened; // true = GoToEnd, false = GoToBegin
+    public bool isPaused;
+
+    private void Start()
+    {
+        isPaused = false;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (isOpened && percentComplete < 1f)
+        if (!isPaused)
         {
-            GoToEnd();
-        } 
-        else if (!isOpened && percentComplete > 0f)
-        {
-            GoToBegin();
+            if (isOpened && percentComplete < 1f)
+            {
+                GoToEnd();
+            }
+            else if (!isOpened && percentComplete > 0f)
+            {
+                GoToBegin();
+            }
         }
     }
 

@@ -25,7 +25,7 @@ public class MySceneManager : MonoBehaviour
         {
             AudioManager.instance.currentSoundtrack.source.Stop();
         }
-        else if (newSoundtrack != "")
+        else if ((newSoundtrack != "") && (newSoundtrack != AudioManager.instance.currentSoundtrack.name))
         {
             AudioManager.instance.Play(newSoundtrack);
         }

@@ -11,12 +11,14 @@ public class Death : MonoBehaviour
     public float fallSpeed;
     public float lethalGrayScale = 0.1f;
 
+    [HideInInspector]
+    public bool deathFinal = false;
+
     private Image blackFade;
     private MySceneManager mySceneManager;
     private GameObject mainCamera;
     private PlayerMovement player;
     private CharacterController controller;
-    private bool deathFinal = false;
     private Vector2 cameraHeightRange;
 
 
@@ -35,16 +37,20 @@ public class Death : MonoBehaviour
         deathFinal = false;
     }
 
-
-    public void GoToDeath(Color groundColor)
+    public void GoToDeath()
     {
         // "Sinking" effect when touching black. 
-        // Camera creeps downwards, until it reaches 0, where death is final
+        // Camera creeps downwards, until it reaches a point where death is final
+        if (mainCamera.transform.localPosition.y < (3*cameraHeightRange.x + cameraHeightRange.y)/4 )
+            deathFinal = true;
+
+        if (!player.wasGrounded)
+            deathFinal = true;
+
         if (mainCamera.transform.localPosition.y < cameraHeightRange.x+0.01f)
         {
             if (!cheatMode || player.goToNextLevel)
             {
-                deathFinal = true;
                 FinalizeDeath();
             }
         }
@@ -55,7 +61,7 @@ public class Death : MonoBehaviour
         }
     }
 
-    public void GoToAlive(Color groundColor)
+    public void GoToAlive()
     {
         if ((mainCamera.transform.localPosition.y < cameraHeightRange.y) && !deathFinal)
         {

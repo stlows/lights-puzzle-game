@@ -24,9 +24,18 @@ public class BreakerRail : Breaker
         railCurve.isOpened = false;
     }
 
-
     public override void OpenSpecific()
     {
         railCurve.isOpened = true;
+    }
+
+    public override void OnClickSpecific()
+    {
+        railCurve.isPaused = true;
+    }
+
+    public override void AfterDelaySpecific()
+    {
+        railCurve.isPaused = false;
     }
 }

@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 	public float verticalAcceleration = -100f; // gravity
 	public float maxLateralSpeed = 30f;
 	public float minVerticalSpeed;
+	public float airBonusSpeed;
 	public float jumpSpeed = 35f;
 	public float lateralFriction = 0.1f;
 	public LayerMask groundMask;
@@ -23,8 +24,11 @@ public class PlayerMovement : MonoBehaviour
 	private Color groundColor;
 	public Vector3 prevAlivePosition;
 	private Vector3 velocity;
+	private Vector3 velocityAirBonus;
 	private float groundDistance = 0.1f;
 	private bool isGrounded;
+	[HideInInspector]
+	public bool wasGrounded;
 	private bool isShadowed;
 	private Death death;
 
@@ -61,13 +65,13 @@ public class PlayerMovement : MonoBehaviour
 
 		// If the player is in the dark or enters the exit tunnel, 
 		// Start the "falling through the floor" effect
-		if (isShadowed || goToNextLevel)
+		if (isShadowed || goToNextLevel || death.deathFinal)
 		{
-			death.GoToDeath(groundColor);
+			death.GoToDeath();
 		}
 		else
 		{
-			death.GoToAlive(groundColor);
+			death.GoToAlive();
 		}
 
 
@@ -86,13 +90,14 @@ public class PlayerMovement : MonoBehaviour
 		}
 		else
 		{
+			float x = Input.GetAxis("Horizontal");
+			float z = Input.GetAxis("Vertical");
 			// Lateral mouvement
-			if (isGrounded)
+
+			if (powerColor != PowerColor.CYAN)
 			{
-				if (powerColor != PowerColor.CYAN)
+				if (isGrounded)
 				{
-					float x = Input.GetAxis("Horizontal");
-					float z = Input.GetAxis("Vertical");
 
 					float actualMaxSpeed = (powerColor == PowerColor.GREEN) ? maxLateralSpeed * 3 : maxLateralSpeed;
 					float actualAcceleration = lateralAcceleration;
@@ -102,16 +107,16 @@ public class PlayerMovement : MonoBehaviour
 					Vector3 newSpeed = lateralVelocity + (actualAcceleration * Time.deltaTime * (transform.right * x + transform.forward * z));
 
 					// Apply increase to x and z while making sure they don't go over the max speed
-					if (newSpeed.magnitude <= actualMaxSpeed)
+					if ((newSpeed.magnitude <= actualMaxSpeed) && (newSpeed.magnitude > lateralVelocity.magnitude))
 					{
 						velocity.x = newSpeed.x;
 						velocity.z = newSpeed.z;
 					}
 				}
-			}
-			else
-			{
 
+				// Always apply this little bonus which serves to control air travel
+				float airAcceleration = 300f;
+				velocityAirBonus = (airAcceleration * Time.deltaTime * (transform.right * x + transform.forward * z));
 			}
 
 			// Jump
@@ -140,10 +145,11 @@ public class PlayerMovement : MonoBehaviour
 		velocity.y = Math.Max(velocity.y, minVerticalSpeed);
 		
 		// Update controller
-		controller.Move(velocity * Time.deltaTime);
+		controller.Move((velocity + velocityAirBonus) * Time.deltaTime);
 
-		// Remember power color for next frame
+		// Remember for next frame
 		prevPowerColor = powerColor;
+		wasGrounded = isGrounded;
 	}
 
 
