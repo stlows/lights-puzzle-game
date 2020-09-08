@@ -70,9 +70,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lateralAcceleration: 500
   verticalAcceleration: -100
-  maxLateralSpeed: 25
+  maxLateralSpeed: 20
   minVerticalSpeed: -300
-  airBonusSpeed: 300
+  airBonusSpeed: 200
   jumpSpeed: 35
   lateralFriction: 0.5
   groundMask:
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cheatMode: 0
   fallSpeed: 40
-  lethalGrayScale: 0.02
+  lethalGrayScale: 0.05
   deathFinal: 0
 --- !u!1 &1532480925139446688
 GameObject:
@@ -272,7 +272,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 16385
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 6dfcd103a57bde04e9096dcf0e51a919, type: 2}
   m_TargetDisplay: 1
@@ -379,6 +379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3032493372500258087}
   - component: {fileID: 1402347333789604690}
+  - component: {fileID: 5151305969043182813}
   m_Layer: 13
   m_Name: Green
   m_TagString: Untagged
@@ -496,6 +497,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5151305969043182813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4209839871819780911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ff745316b18fd54da313f01edaf6b4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FadeSpeed: 2
+  finalVolume: 0.5
 --- !u!1 &5204107780042268773
 GameObject:
   m_ObjectHideFlags: 0

@@ -41,11 +41,11 @@ public class Death : MonoBehaviour
     {
         // "Sinking" effect when touching black. 
         // Camera creeps downwards, until it reaches a point where death is final
-        if (mainCamera.transform.localPosition.y < (3*cameraHeightRange.x + cameraHeightRange.y)/4 )
+        if (mainCamera.transform.localPosition.y < (3*cameraHeightRange.x + cameraHeightRange.y)/4  && !cheatMode)
             deathFinal = true;
 
-        if (!player.wasGrounded)
-            deathFinal = true;
+        //if (!player.wasGrounded)
+        //    deathFinal = true;
 
         if (mainCamera.transform.localPosition.y < cameraHeightRange.x+0.01f)
         {

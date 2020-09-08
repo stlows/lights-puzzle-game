@@ -19,29 +19,31 @@ public class UIPowerColor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (playerColorCheck.powerColor)
-        {
-            case PowerColor.GREEN:
-                indicator.color = Color.green;
-                break;
-            case PowerColor.RED:
-                indicator.color = Color.red;
-                break;
-            case PowerColor.BLUE:
-                indicator.color = Color.blue;
-                break;
-            case PowerColor.YELLOW:
-                indicator.color = Color.yellow;
-                break;
-            case PowerColor.MAGENTA:
-                indicator.color = Color.magenta;
-                break;
-            case PowerColor.CYAN:
-                indicator.color = Color.cyan;
-                break;
-            default:
-                indicator.color = Color.white;
-                break;
-        }
+        //switch (playerColorCheck.powerColor)
+        //{
+        //    case PowerColor.GREEN:
+        //        indicator.color = Color.green;
+        //        break;
+        //    case PowerColor.RED:
+        //        indicator.color = Color.red;
+        //        break;
+        //    case PowerColor.BLUE:
+        //        indicator.color = Color.blue;
+        //        break;
+        //    case PowerColor.YELLOW:
+        //        indicator.color = Color.yellow;
+        //        break;
+        //    case PowerColor.MAGENTA:
+        //        indicator.color = Color.magenta;
+        //        break;
+        //    case PowerColor.CYAN:
+        //        indicator.color = Color.cyan;
+        //        break;
+        //    default:
+        //        indicator.color = Color.white;
+        //        break;
+        //}
+
+        indicator.color = playerColorCheck.groundColor;
     }
 }

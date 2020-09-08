@@ -13,12 +13,12 @@ public class ColorCheck : MonoBehaviour
 
     private Texture2D tex;
     private PowerColor previousPowerColor = PowerColor.WHITE;
-    private AudioSource greenAudio;
+    private FadingAudioSource greenAudio;
 
     // Start is called before the first frame update
     void Start()
     {
-        greenAudio = transform.Find("Sounds").Find("Green").gameObject.GetComponent<AudioSource>();
+        greenAudio = transform.Find("Sounds").Find("Green").gameObject.GetComponent<FadingAudioSource>();
     }
 
 
@@ -89,11 +89,11 @@ public class ColorCheck : MonoBehaviour
     {
         if (powerColor == PowerColor.GREEN)
         {
-            greenAudio.Play();
+            greenAudio.FadeIn();
         }
         else
         {
-            greenAudio.Stop();
+            greenAudio.FadeOut();
         }
     }
 }

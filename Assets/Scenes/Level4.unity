@@ -2876,52 +2876,52 @@ PrefabInstance:
     - target: {fileID: 5196529406078999276, guid: 242f2036e302c5746b2cd23af74454a1,
         type: 3}
       propertyPath: m_SelectedEdges.Array.data[1].a
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5196529406078999276, guid: 242f2036e302c5746b2cd23af74454a1,
-        type: 3}
-      propertyPath: m_SelectedEdges.Array.data[1].b
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5196529406078999276, guid: 242f2036e302c5746b2cd23af74454a1,
-        type: 3}
-      propertyPath: m_SelectedEdges.Array.data[2].a
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5196529406078999276, guid: 242f2036e302c5746b2cd23af74454a1,
-        type: 3}
-      propertyPath: m_SelectedEdges.Array.data[2].b
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5196529406078999276, guid: 242f2036e302c5746b2cd23af74454a1,
-        type: 3}
-      propertyPath: m_SelectedEdges.Array.data[3].a
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5196529406078999276, guid: 242f2036e302c5746b2cd23af74454a1,
-        type: 3}
-      propertyPath: m_SelectedEdges.Array.data[3].b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5196529406078999276, guid: 242f2036e302c5746b2cd23af74454a1,
-        type: 3}
-      propertyPath: m_SelectedVertices.Array.data[0]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5196529406078999276, guid: 242f2036e302c5746b2cd23af74454a1,
-        type: 3}
-      propertyPath: m_SelectedVertices.Array.data[1]
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5196529406078999276, guid: 242f2036e302c5746b2cd23af74454a1,
         type: 3}
+      propertyPath: m_SelectedEdges.Array.data[1].b
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5196529406078999276, guid: 242f2036e302c5746b2cd23af74454a1,
+        type: 3}
+      propertyPath: m_SelectedEdges.Array.data[2].a
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5196529406078999276, guid: 242f2036e302c5746b2cd23af74454a1,
+        type: 3}
+      propertyPath: m_SelectedEdges.Array.data[2].b
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5196529406078999276, guid: 242f2036e302c5746b2cd23af74454a1,
+        type: 3}
+      propertyPath: m_SelectedEdges.Array.data[3].a
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5196529406078999276, guid: 242f2036e302c5746b2cd23af74454a1,
+        type: 3}
+      propertyPath: m_SelectedEdges.Array.data[3].b
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5196529406078999276, guid: 242f2036e302c5746b2cd23af74454a1,
+        type: 3}
+      propertyPath: m_SelectedVertices.Array.data[0]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5196529406078999276, guid: 242f2036e302c5746b2cd23af74454a1,
+        type: 3}
+      propertyPath: m_SelectedVertices.Array.data[1]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5196529406078999276, guid: 242f2036e302c5746b2cd23af74454a1,
+        type: 3}
       propertyPath: m_SelectedVertices.Array.data[2]
-      value: 11
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5196529406078999276, guid: 242f2036e302c5746b2cd23af74454a1,
         type: 3}
       propertyPath: m_SelectedVertices.Array.data[3]
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5196529406078999276, guid: 242f2036e302c5746b2cd23af74454a1,
         type: 3}
@@ -3327,7 +3327,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-152290
+  m_Name: pb_Mesh-39094
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -4312,7 +4312,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-152232
+  m_Name: pb_Mesh-39036
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
