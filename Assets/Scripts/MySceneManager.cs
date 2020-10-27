@@ -38,6 +38,7 @@ public class MySceneManager : MonoBehaviour
         //Load next scene if the exit tunnel sound is over, as well as exiting == true as a safeguard
         if (exiting && !nextLevelAudioSource.isPlaying)
         {
+            AudioManager.instance.currentSoundtrack.source.volume = 1f;
             //Load next Scene
             SceneManager.LoadScene("Scenes/Level" + (currentLevelIndex + loadIncrement));
         }
@@ -51,6 +52,7 @@ public class MySceneManager : MonoBehaviour
         if (!exiting)
         {
             loadIncrement = goToNextLevel ? 1 : 0;
+            AudioManager.instance.currentSoundtrack.source.volume = 0f;
             nextLevelAudioSource.Play();
             exiting = true;
         }

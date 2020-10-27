@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
 				if (isGrounded)
 				{
 
-					float actualMaxSpeed = (powerColor == PowerColor.GREEN) ? maxLateralSpeed * 3 : maxLateralSpeed;
+					float actualMaxSpeed = (powerColor == PowerColor.GREEN) ? maxLateralSpeed * 4 : maxLateralSpeed;
 					float actualAcceleration = lateralAcceleration;
 
 					// Calculate velocity increase
