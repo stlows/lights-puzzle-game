@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
 	public bool goToNextLevel = false;
 	public float startSpeed;
 
-	private MySceneManager mySceneManager;
 	private CharacterController controller;
 	private PowerColor powerColor;
 	private PowerColor prevPowerColor;
@@ -37,7 +36,6 @@ public class PlayerMovement : MonoBehaviour
 		controller = gameObject.GetComponent<CharacterController>();
 		death = gameObject.GetComponent<Death>();
 		velocity = new Vector3(0, startSpeed, 0);
-		mySceneManager = GameObject.Find("/SceneManager").GetComponent<MySceneManager>();
 	}
 
     // Update is called once per frame
@@ -92,32 +90,38 @@ public class PlayerMovement : MonoBehaviour
 		{
 			float x = Input.GetAxis("Horizontal");
 			float z = Input.GetAxis("Vertical");
+			
 			// Lateral mouvement
-
-			if (powerColor != PowerColor.CYAN)
+			if (isGrounded && powerColor != PowerColor.CYAN)
 			{
-				if (isGrounded)
+
+				float actualMaxSpeed = (powerColor == PowerColor.GREEN) ? maxLateralSpeed * 3 : maxLateralSpeed;
+				float actualAcceleration = lateralAcceleration;
+
+				// Lateral Friction
+				// Friction en sqrt pour permettre aux grandes vitesses de rester plus longtemps
+				// Tres important pour la dynamique entre la couleur high speed et la couleur jump
+				velocity.x -= lateralFriction * Math.Sign(velocity.x) * (float)Math.Sqrt(Math.Abs(velocity.x));
+				velocity.z -= lateralFriction * Math.Sign(velocity.z) * (float)Math.Sqrt(Math.Abs(velocity.z));
+
+				// Calculate velocity increase
+				Vector3 lateralVelocity = new Vector3(velocity.x, 0f, velocity.z);
+				Vector3 newSpeed = lateralVelocity + (actualAcceleration * Time.deltaTime * (transform.right * x + transform.forward * z));
+
+				// Apply increase to x and z while making sure they don't go over the max speed
+				velocity.x = newSpeed.x;
+				velocity.z = newSpeed.z;
+
+				if (velocity.magnitude > actualMaxSpeed)
 				{
-
-					float actualMaxSpeed = (powerColor == PowerColor.GREEN) ? maxLateralSpeed * 4 : maxLateralSpeed;
-					float actualAcceleration = lateralAcceleration;
-
-					// Calculate velocity increase
-					Vector3 lateralVelocity = new Vector3(velocity.x, 0f, velocity.z);
-					Vector3 newSpeed = lateralVelocity + (actualAcceleration * Time.deltaTime * (transform.right * x + transform.forward * z));
-
-					// Apply increase to x and z while making sure they don't go over the max speed
-					if ((newSpeed.magnitude <= actualMaxSpeed) && (newSpeed.magnitude > lateralVelocity.magnitude))
-					{
-						velocity.x = newSpeed.x;
-						velocity.z = newSpeed.z;
-					}
+					velocity.x *= (actualMaxSpeed / velocity.magnitude);
+					velocity.z *= (actualMaxSpeed / velocity.magnitude);
 				}
-
-				// Always apply this little bonus which serves to control air travel
-				float airAcceleration = 300f;
-				velocityAirBonus = (airAcceleration * Time.deltaTime * (transform.right * x + transform.forward * z));
 			}
+
+			// Always apply this little bonus which serves to control air travel
+			float airAcceleration = 300f;
+			velocityAirBonus = (airAcceleration * Time.deltaTime * (transform.right * x + transform.forward * z));
 
 			// Jump
 			if (isGrounded)
@@ -129,15 +133,6 @@ public class PlayerMovement : MonoBehaviour
 				velocity.y = (powerColor == PowerColor.YELLOW) ? jumpSpeed * 3 : jumpSpeed;
 			}
 
-		}
-
-		// Lateral Friction
-		if (isGrounded && (powerColor != PowerColor.CYAN))
-		{
-			// Friction en sqrt pour permettre aux grandes vitesses de rester plus longtemps
-			// Tres important pour la dynamique entre la couleur high speed et la couleur jump
-			velocity.x -= lateralFriction * Math.Sign(velocity.x) * (float) Math.Sqrt(Math.Abs(velocity.x));
-			velocity.z -= lateralFriction * Math.Sign(velocity.z) * (float) Math.Sqrt(Math.Abs(velocity.z));
 		}
 
 		// Gravity

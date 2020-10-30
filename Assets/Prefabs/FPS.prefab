@@ -68,9 +68,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25707291db5823746a27628bbdf3fedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lateralAcceleration: 500
+  lateralAcceleration: 1000
   verticalAcceleration: -100
-  maxLateralSpeed: 40
+  maxLateralSpeed: 30
   minVerticalSpeed: -300
   airBonusSpeed: 50
   jumpSpeed: 35
