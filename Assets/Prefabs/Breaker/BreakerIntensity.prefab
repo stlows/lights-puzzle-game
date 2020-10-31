@@ -46,8 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 702a631009a84ca49ac3655511a3a061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightTransforms: []
   isOpened: 0
+  delay: 0
+  lightTransforms: []
   openIntensity: 4
   closeIntensity: 0
 --- !u!114 &1018224172310987056
@@ -87,6 +88,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Body
+      objectReference: {fileID: 0}
+    - target: {fileID: 2864666521597378679, guid: b435296da706ea142b0776620fcd68cd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4921144966655636534, guid: b435296da706ea142b0776620fcd68cd,
         type: 3}
@@ -142,6 +148,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5888965039311410901, guid: b435296da706ea142b0776620fcd68cd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5888965040890055988, guid: b435296da706ea142b0776620fcd68cd,
         type: 3}
