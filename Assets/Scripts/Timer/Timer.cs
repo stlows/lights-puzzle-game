@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Timer: MonoBehaviour
+public abstract class Timer: Selectable
 {
 
     public Transform[] lightTransforms;
@@ -11,7 +11,6 @@ public abstract class Timer: MonoBehaviour
 
     protected List<Light> associatedLights = new List<Light>();
 
-    private MinimumDistance minimumDistance;
     private AudioSource audioStart;
     private AudioSource audioDuring;
     private Transform knob;
@@ -27,7 +26,6 @@ public abstract class Timer: MonoBehaviour
             associatedLights.Add(light);
         }
         // Reach for important components in this game object
-        minimumDistance = gameObject.GetComponent<MinimumDistance>();
         audioStart = transform.Find("Body").Find("SoundStart").gameObject.GetComponent<AudioSource>();
         audioDuring = transform.Find("Body").Find("SoundDuring").gameObject.GetComponent<AudioSource>();
         knob = transform.Find("Body").Find("Rotating knob");
@@ -44,6 +42,10 @@ public abstract class Timer: MonoBehaviour
 
     void Update()
     {
+        if (base.ButtonIsActivated())
+        {
+            ActivateButton();
+        }
         if (isOpened)
         {
             // Time elapsed since the timer has been turned on
@@ -61,13 +63,8 @@ public abstract class Timer: MonoBehaviour
         }
     }
 
-    void OnMouseUp()
+    void ActivateButton()
     {
-        if (!minimumDistance.Check())
-        {
-            // If the minimum distance requirement wasn't met, do nothing
-            return;
-        }
         Open();
     }
 

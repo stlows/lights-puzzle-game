@@ -112,6 +112,8 @@ public class PlayerMovement : MonoBehaviour
 				velocity.x = newSpeed.x;
 				velocity.z = newSpeed.z;
 
+				// TODO add footstep sounds if speed != 0
+
 				if (velocity.magnitude > actualMaxSpeed)
 				{
 					velocity.x *= (actualMaxSpeed / velocity.magnitude);

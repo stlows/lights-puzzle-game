@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
  
-public abstract class Breaker : MonoBehaviour
+public abstract class Breaker : Selectable
 {
     public bool isOpened = false;
     public float delay;
 
 
-    private MinimumDistance minimumDistance;
     private Transform arm;
     private AudioSource audioSource;
     private Vector3 closedAngle = new Vector3(-30, 0, 0);
@@ -19,7 +18,6 @@ public abstract class Breaker : MonoBehaviour
     protected void BreakerStart()
     {
         // Reach for important components in this game object
-        minimumDistance = gameObject.GetComponent<MinimumDistance>();
         audioSource = transform.Find("Body").Find("Sound").gameObject.GetComponent<AudioSource>();
         arm = transform.Find("Body").Find("ArmWrapper");
         // Starting position for the breaker
@@ -38,6 +36,11 @@ public abstract class Breaker : MonoBehaviour
 
     private void Update()
     {
+        if (base.ButtonIsActivated())
+        {
+            ActivateButton();
+        }
+
         if ( Time.time > (timeClicked + delay) )
         {
             if (isOpened)
@@ -53,14 +56,8 @@ public abstract class Breaker : MonoBehaviour
         }
     }
 
-    void OnMouseUp()
+    void ActivateButton()
     {
-        // If the minimum distance requirement wasn't met, do nothing
-        if (!minimumDistance.Check())
-        {
-            return;
-        }
-
         timeClicked = Time.time;
         OnClickSpecific();
 
