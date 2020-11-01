@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3390277880734189173}
   - component: {fileID: 3390277880734189163}
-  - component: {fileID: 3390277880734189179}
   - component: {fileID: 3390277880734189176}
   m_Layer: 0
   m_Name: TimerColor
@@ -46,24 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce3bf1d01589f0b41aa9a1c4a8e644e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minimumDistance: 15
   lightTransforms: []
   isOpened: 0
   seconds: 2
   openColor: {r: 1, g: 1, b: 1, a: 1}
   closeColor: {r: 0, g: 0, b: 0, a: 1}
---- !u!114 &3390277880734189179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3390277880734189172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f24a8e673f969b44956e41c8317cc89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minimumDistance: 12
 --- !u!65 &3390277880734189176
 BoxCollider:
   m_ObjectHideFlags: 0

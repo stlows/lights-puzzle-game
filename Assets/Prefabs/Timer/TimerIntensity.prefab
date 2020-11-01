@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3390277880734189173}
   - component: {fileID: 2429512040963314606}
-  - component: {fileID: 3390277880734189179}
   - component: {fileID: 3390277880734189176}
   m_Layer: 0
   m_Name: TimerIntensity
@@ -46,24 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a6af8066cba1c45b6cd3f0a766cd63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minimumDistance: 15
   lightTransforms: []
   isOpened: 0
   seconds: 10
   openIntensity: 4
   closeIntensity: 0
---- !u!114 &3390277880734189179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3390277880734189172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f24a8e673f969b44956e41c8317cc89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minimumDistance: 12
 --- !u!65 &3390277880734189176
 BoxCollider:
   m_ObjectHideFlags: 0

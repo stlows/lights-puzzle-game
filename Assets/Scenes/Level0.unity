@@ -254,7 +254,8 @@ PrefabInstance:
       propertyPath: lightTransforms.Array.data[0]
       value: 
       objectReference: {fileID: 495514718}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1018224172310987056, guid: 5768e24d910fdb04c9f25649842a5768, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5768e24d910fdb04c9f25649842a5768, type: 3}
 --- !u!4 &12007781 stripped
 Transform:
