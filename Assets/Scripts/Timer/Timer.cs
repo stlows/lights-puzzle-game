@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Timer: Selectable
+public abstract class Timer: MonoBehaviour
 {
 
     public Transform[] lightTransforms;
@@ -11,6 +11,7 @@ public abstract class Timer: Selectable
 
     protected List<Light> associatedLights = new List<Light>();
 
+    private DetectSelection fpsSelection;
     private AudioSource audioStart;
     private AudioSource audioDuring;
     private Transform knob;
@@ -28,6 +29,7 @@ public abstract class Timer: Selectable
         // Reach for important components in this game object
         audioStart = transform.Find("Body").Find("SoundStart").gameObject.GetComponent<AudioSource>();
         audioDuring = transform.Find("Body").Find("SoundDuring").gameObject.GetComponent<AudioSource>();
+        fpsSelection = GameObject.Find("FPS").GetComponent<DetectSelection>();
         knob = transform.Find("Body").Find("Rotating knob");
         // Start the timer or not
         if (isOpened)
@@ -42,8 +44,9 @@ public abstract class Timer: Selectable
 
     void Update()
     {
-        if (base.ButtonIsActivated())
+        if (fpsSelection.lastSelected == gameObject.name)
         {
+            fpsSelection.Clear();
             ActivateButton();
         }
         if (isOpened)

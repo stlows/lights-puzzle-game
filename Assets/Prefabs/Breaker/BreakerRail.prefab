@@ -45,9 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7290774bed65124798969b4c7700863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumDistance: 15
+  minimumDistance: 20
   isOpened: 0
   delay: 1
+  automaticOpen: 0
+  automaticOpenDelay: 0
   railTransform: {fileID: 0}
 --- !u!65 &6582718057655825393
 BoxCollider:

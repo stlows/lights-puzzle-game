@@ -1,33 +1,39 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public abstract class Selectable : MonoBehaviour
+public class DetectSelection : MonoBehaviour
 {
     public float minimumDistance;
+    public string lastSelected;
+
     private const KeyCode triggerKey = KeyCode.Mouse0;
     private RaycastHit hitInfo;
 
-    protected bool ButtonIsActivated()
+    void Start()
+    {
+        lastSelected = null;
+    }
+
+    void Update()
     {
         if (Input.GetKeyUp(triggerKey))
         {
-            if (CheckRaycastHit())
-            {
-                return true;
-            }
+            CheckRaycastHit();
         }
-        return false;
     }
 
-    bool CheckRaycastHit()
+    void CheckRaycastHit()
     {
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * minimumDistance, Color.green, 1f);
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, minimumDistance))
         {
-            if (hitInfo.collider.name == gameObject.GetComponent<Collider>().name)
-            {
-                return true;
-            }
+            lastSelected = hitInfo.collider.name;
         }
-        return false;
+    }
+
+    public void Clear()
+    {
+        lastSelected = null;
     }
 }

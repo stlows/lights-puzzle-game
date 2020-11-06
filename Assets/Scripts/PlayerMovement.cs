@@ -50,7 +50,6 @@ public class PlayerMovement : MonoBehaviour
 		float sphere_radius = controller.radius + groundDistance;
 		isGrounded = Physics.CheckSphere(sphere_position, sphere_radius, groundMask);
 
-
 		// Black color check: too dark of a grayscale means the player is shadowed and starts falling
 		if (isGrounded && (groundColor.grayscale < death.lethalGrayScale))
 		{

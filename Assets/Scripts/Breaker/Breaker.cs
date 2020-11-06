@@ -2,22 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
  
-public abstract class Breaker : Selectable
+public abstract class Breaker : MonoBehaviour
 {
     public bool isOpened = false;
     public float delay;
-
+    public bool automaticOpen;
+    public float automaticOpenDelay;
 
     private Transform arm;
+    private DetectSelection fpsSelection;
     private AudioSource audioSource;
     private Vector3 closedAngle = new Vector3(-30, 0, 0);
     private Vector3 openedAngle = new Vector3(30, 0, 0);
     private float timeClicked;
 
-    // Use this for initialization
     protected void BreakerStart()
     {
         // Reach for important components in this game object
+        fpsSelection = GameObject.Find("FPS").GetComponent<DetectSelection>(); 
         audioSource = transform.Find("Body").Find("Sound").gameObject.GetComponent<AudioSource>();
         arm = transform.Find("Body").Find("ArmWrapper");
         // Starting position for the breaker
@@ -34,10 +36,16 @@ public abstract class Breaker : Selectable
         timeClicked = Mathf.Infinity;
     }
 
-    private void Update()
+    void Update()
     {
-        if (base.ButtonIsActivated())
+        if (automaticOpen && Time.timeSinceLevelLoad > automaticOpenDelay)
         {
+            automaticOpen = false;
+            ActivateButton();
+        }
+        else if (fpsSelection.lastSelected == gameObject.name)
+        {
+            fpsSelection.Clear();
             ActivateButton();
         }
 

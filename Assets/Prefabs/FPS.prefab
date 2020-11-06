@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1532480925075701009}
   - component: {fileID: 5841170985613729897}
   - component: {fileID: 1214835395180371498}
+  - component: {fileID: 5122440203472945412}
   m_Layer: 13
   m_Name: FPS
   m_TagString: Player
@@ -70,7 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lateralAcceleration: 1000
   verticalAcceleration: -100
-  maxLateralSpeed: 30
+  maxLateralSpeed: 25
   minVerticalSpeed: -300
   airBonusSpeed: 50
   jumpSpeed: 35
@@ -113,6 +114,20 @@ MonoBehaviour:
   fallSpeed: 40
   lethalGrayScale: 0.05
   deathFinal: 0
+--- !u!114 &5122440203472945412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532480925075701010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45144b2fe1c3e6749919f63b52b98388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minimumDistance: 15
+  lastSelected: 
 --- !u!1 &1532480925139446688
 GameObject:
   m_ObjectHideFlags: 0

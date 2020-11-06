@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce3bf1d01589f0b41aa9a1c4a8e644e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumDistance: 15
+  minimumDistance: 20
   lightTransforms: []
   isOpened: 0
   seconds: 2

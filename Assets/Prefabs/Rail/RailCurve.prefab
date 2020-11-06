@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   percentComplete: 0
   isOpened: 0
+  isPaused: 0
   angularSpeed: 20
   angleBegin: 0
   angleEnd: 90

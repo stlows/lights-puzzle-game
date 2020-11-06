@@ -13,8 +13,11 @@ public class MouseLook : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		#if UNITY_WEBGL
-			mouseSensitivity /= 2;
+		#if !UNITY_EDITOR && UNITY_WEBGL
+			Debug.Log("WEBGL HEEE AHHHHHH");
+			mouseSensitivity /= 4;
+		#else
+			Debug.Log("Not WEBGL");
 		#endif
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = true;
