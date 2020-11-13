@@ -58,7 +58,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: electrobeat
     clip: {fileID: 8300000, guid: 6985e9e845672ee41b8f532987a8d2d4, type: 3}
-    volume: 1
+    volume: 0.75
     pitch: 1
     loop: 1
     source: {fileID: 0}
