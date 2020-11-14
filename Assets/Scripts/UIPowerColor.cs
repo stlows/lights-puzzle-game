@@ -5,18 +5,21 @@ using UnityEngine.UI;
 
 public class UIPowerColor : MonoBehaviour
 {
-    public ColorCheck cc;
-
+    private ColorCheck cc;
     private GameObject movingCrosshairLeft;
     private GameObject movingCrosshairRight;
+    private GameObject blackPieLeft;
+    private GameObject blackPieRight;
     private GameObject halo;
     private DeathManager dm;
 
     // Start is called before the first frame update
     void Start()
     {
-        movingCrosshairLeft = GameObject.Find("/Canvas/crosshairMovingLeft");
-        movingCrosshairRight = GameObject.Find("/Canvas/crosshairMovingRight");
+        movingCrosshairLeft = GameObject.Find("/Canvas/crosshair/crosshairMovingLeft");
+        movingCrosshairRight = GameObject.Find("/Canvas/crosshair/crosshairMovingRight");
+        blackPieLeft = GameObject.Find("/Canvas/blackPie/blackPieLeft");
+        blackPieRight = GameObject.Find("/Canvas/blackPie/blackPieRight");
         halo = GameObject.Find("/Canvas/halo");
         dm = GameObject.Find("FPS").GetComponent<DeathManager>();
         cc = GameObject.Find("FPS").GetComponent<ColorCheck>();
@@ -37,9 +40,12 @@ public class UIPowerColor : MonoBehaviour
             halo.SetActive(true);
         }
 
-        float newAngle = -90f + 180f * dm.health;
-        movingCrosshairLeft.GetComponent<RectTransform>().localEulerAngles = new Vector3(0, 0, newAngle);
-        newAngle = -90f - 180f * dm.health;
-        movingCrosshairRight.GetComponent<RectTransform>().localEulerAngles = new Vector3(0, 0, newAngle);
+        float newAngleLeft = -90f + 180f * dm.health;
+        movingCrosshairLeft.GetComponent<RectTransform>().localEulerAngles = new Vector3(0, 0, newAngleLeft);
+        float newAngleRight = -90f - 180f * dm.health;
+        movingCrosshairRight.GetComponent<RectTransform>().localEulerAngles = new Vector3(0, 0, newAngleRight);
+        
+        blackPieLeft.GetComponent<Image>().fillAmount = (1 - dm.health) / 2;
+        blackPieRight.GetComponent<Image>().fillAmount = (1 - dm.health) / 2;
     }
 }
