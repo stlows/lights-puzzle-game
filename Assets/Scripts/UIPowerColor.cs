@@ -5,45 +5,41 @@ using UnityEngine.UI;
 
 public class UIPowerColor : MonoBehaviour
 {
-    public ColorCheck playerColorCheck;
+    public ColorCheck cc;
 
-    private Image indicator;
+    private GameObject movingCrosshairLeft;
+    private GameObject movingCrosshairRight;
+    private GameObject halo;
+    private DeathManager dm;
 
     // Start is called before the first frame update
     void Start()
     {
-        indicator = transform.gameObject.GetComponent<Image>();
-        indicator.canvasRenderer.SetAlpha(1f);
+        movingCrosshairLeft = GameObject.Find("/Canvas/crosshairMovingLeft");
+        movingCrosshairRight = GameObject.Find("/Canvas/crosshairMovingRight");
+        halo = GameObject.Find("/Canvas/halo");
+        dm = GameObject.Find("FPS").GetComponent<DeathManager>();
+        cc = GameObject.Find("FPS").GetComponent<ColorCheck>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //switch (playerColorCheck.powerColor)
-        //{
-        //    case PowerColor.GREEN:
-        //        indicator.color = Color.green;
-        //        break;
-        //    case PowerColor.RED:
-        //        indicator.color = Color.red;
-        //        break;
-        //    case PowerColor.BLUE:
-        //        indicator.color = Color.blue;
-        //        break;
-        //    case PowerColor.YELLOW:
-        //        indicator.color = Color.yellow;
-        //        break;
-        //    case PowerColor.MAGENTA:
-        //        indicator.color = Color.magenta;
-        //        break;
-        //    case PowerColor.CYAN:
-        //        indicator.color = Color.cyan;
-        //        break;
-        //    default:
-        //        indicator.color = Color.white;
-        //        break;
-        //}
+        Color color = cc.PowerColorToColor(cc.powerColor);
 
-        indicator.color = playerColorCheck.groundColor;
+        if (color == Color.white)
+        {
+            halo.SetActive(false);
+        }
+        else
+        {
+            halo.GetComponent<RawImage>().color = color;
+            halo.SetActive(true);
+        }
+
+        float newAngle = -90f + 180f * dm.health;
+        movingCrosshairLeft.GetComponent<RectTransform>().localEulerAngles = new Vector3(0, 0, newAngle);
+        newAngle = -90f - 180f * dm.health;
+        movingCrosshairRight.GetComponent<RectTransform>().localEulerAngles = new Vector3(0, 0, newAngle);
     }
 }

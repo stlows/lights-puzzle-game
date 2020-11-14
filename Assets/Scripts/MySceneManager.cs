@@ -1,17 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System;
+﻿using System;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MySceneManager : MonoBehaviour
 {
     public int currentLevelIndex;
     public string newSoundtrack = "";
 
+    private Image blackFade;
     private bool exiting;
     private int loadIncrement;
-    private AudioSource nextLevelAudioSource;
+    private AudioSource currentlyPlayingAudio;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +19,6 @@ public class MySceneManager : MonoBehaviour
         currentLevelIndex = Int32.Parse(SceneManager.GetActiveScene().name.Substring(5));
         exiting = false;
         loadIncrement = 0;
-        nextLevelAudioSource = transform.Find("SoundExit").GetComponent<AudioSource>();
         Debug.Log(newSoundtrack);
         if (newSoundtrack == "stop")
         {
@@ -29,14 +28,18 @@ public class MySceneManager : MonoBehaviour
         {
             AudioManager.instance.Play(newSoundtrack);
         }
+
+        blackFade = GameObject.Find("/Canvas/blackFade").GetComponent<Image>();
+        blackFade.color = Color.black;
+        blackFade.canvasRenderer.SetAlpha(0f);
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        //Load next scene if the exit tunnel sound is over, as well as exiting == true as a safeguard
-        if (exiting && !nextLevelAudioSource.isPlaying)
+        //Load next scene if the exit tunnel sound is over
+        if (exiting && !currentlyPlayingAudio.isPlaying)
         {
             AudioManager.instance.currentSoundtrack.source.volume = 1f;
             //Load next Scene
@@ -51,9 +54,17 @@ public class MySceneManager : MonoBehaviour
         // Exit has been triggered by player entering tunnel.
         if (!exiting)
         {
+            blackFade.canvasRenderer.SetAlpha(1f);
+            if (goToNextLevel)
+            {
+                currentlyPlayingAudio = transform.Find("SoundExit").GetComponent<AudioSource>();
+            } else {
+                currentlyPlayingAudio = transform.Find("SoundDeath").GetComponent<AudioSource>();
+                AudioManager.instance.currentSoundtrack.source.volume = 0f;
+            }
+
             loadIncrement = goToNextLevel ? 1 : 0;
-            AudioManager.instance.currentSoundtrack.source.volume = 0f;
-            nextLevelAudioSource.Play();
+            currentlyPlayingAudio.Play();
             exiting = true;
         }
     }

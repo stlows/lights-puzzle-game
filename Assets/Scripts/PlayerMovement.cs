@@ -14,66 +14,51 @@ public class PlayerMovement : MonoBehaviour
 	public float jumpSpeed = 35f;
 	public float lateralFriction = 0.1f;
 	public LayerMask groundMask;
-	public bool goToNextLevel = false;
 	public float startSpeed;
 
+	[HideInInspector]
+	public bool isGrounded;
+	[HideInInspector]
+	public bool wasGrounded;
+	
 	private CharacterController controller;
-	private PowerColor powerColor;
-	private PowerColor prevPowerColor;
-	private Color groundColor;
-	public Vector3 prevAlivePosition;
+	private ColorCheck cc;	
+	private DeathManager dm;
 	private Vector3 velocity;
 	private Vector3 velocityAirBonus;
 	private float groundDistance = 0.1f;
-	private bool isGrounded;
-	[HideInInspector]
-	public bool wasGrounded;
-	private bool isShadowed;
-	private Death death;
 
     private void Start()
 	{
 		controller = gameObject.GetComponent<CharacterController>();
-		death = gameObject.GetComponent<Death>();
+		dm = gameObject.GetComponent<DeathManager>();
+		cc = gameObject.GetComponent<ColorCheck>();
 		velocity = new Vector3(0, startSpeed, 0);
+		isGrounded = true;
+		wasGrounded = true;
 	}
 
     // Update is called once per frame
     void Update ()
 	{
-		// Update color the player is stading on (reads from ColorCheck.cs)
-		powerColor = gameObject.GetComponent<ColorCheck>().powerColor;
-		groundColor = gameObject.GetComponent<ColorCheck>().groundColor;
-
 		// Ground Check
+		wasGrounded = isGrounded;
 		Vector3 sphere_position = transform.position + Vector3.down * (controller.height * .5f - controller.radius);
 		float sphere_radius = controller.radius + groundDistance;
 		isGrounded = Physics.CheckSphere(sphere_position, sphere_radius, groundMask);
 
-		// Black color check: too dark of a grayscale means the player is shadowed and starts falling
-		if (isGrounded && (groundColor.grayscale < death.lethalGrayScale))
-		{
-			isShadowed = true;
-		}
-        else
-        {
-			isShadowed = false;
-        }
+		// Lethal shadow checks and more..
+		dm.UpdateDeathManager(isGrounded, wasGrounded);
 
-		// If the player is in the dark or enters the exit tunnel, 
-		// Start the "falling through the floor" effect
-		if (isShadowed || goToNextLevel || death.deathFinal)
-		{
-			death.GoToDeath();
-		}
-		else
-		{
-			death.GoToAlive();
-		}
+		// No mouvement if the player is dead
+		if (dm.isDead)
+			return;
 
+		// Update color the player is stading on
+		cc.UpdatePowerColor(dm.isShadowed);
 
 		// When the detected color is blue for the first time, bounce back.
-		if ((powerColor == PowerColor.BLUE) && (prevPowerColor != PowerColor.BLUE))
+		if ((cc.powerColor == PowerColor.BLUE) && (cc.prevPowerColor != PowerColor.BLUE))
 		{
 			// TODO detecter le gradient de bleu et appliquer la force en direction opposee
 			velocity = -velocity.normalized * Math.Max(30, velocity.magnitude);
@@ -91,10 +76,10 @@ public class PlayerMovement : MonoBehaviour
 			float z = Input.GetAxis("Vertical");
 			
 			// Lateral mouvement
-			if (isGrounded && powerColor != PowerColor.CYAN)
+			if (isGrounded && cc.powerColor != PowerColor.CYAN)
 			{
 
-				float actualMaxSpeed = (powerColor == PowerColor.GREEN) ? maxLateralSpeed * 3 : maxLateralSpeed;
+				float actualMaxSpeed = (cc.powerColor == PowerColor.GREEN) ? maxLateralSpeed * 3 : maxLateralSpeed;
 				if (x==0 && z==0)
                 {
 					velocity.x = 0;
@@ -135,9 +120,9 @@ public class PlayerMovement : MonoBehaviour
 			{
 				velocity.y = 0;
 			}
-			if (Input.GetButtonDown("Jump") && isGrounded)
+			if (Input.GetButtonDown("Jump") && isGrounded && dm.jumpEnabled)
 			{
-				velocity.y = (powerColor == PowerColor.YELLOW) ? jumpSpeed * 3 : jumpSpeed;
+				velocity.y = (cc.powerColor == PowerColor.YELLOW) ? jumpSpeed * 3 : jumpSpeed;
 			}
 
 		}
@@ -148,10 +133,6 @@ public class PlayerMovement : MonoBehaviour
 		
 		// Update controller
 		controller.Move((velocity + velocityAirBonus) * Time.deltaTime);
-
-		// Remember for next frame
-		prevPowerColor = powerColor;
-		wasGrounded = isGrounded;
 	}
 
 
@@ -161,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
 		if (hit.gameObject.CompareTag("Finish"))
 		{
 			Debug.Log("TrigNextLevel");
-			goToNextLevel = true;
+			dm.SetupNextLevel();
 		}
 	}
 

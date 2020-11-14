@@ -79,10 +79,8 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 2048
-  goToNextLevel: 0
   startSpeed: 0
-  prevAlivePosition: {x: 0, y: 0, z: 0}
-  wasGrounded: 0
+  isGrounded: 0
 --- !u!114 &5841170985613729897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,6 +96,7 @@ MonoBehaviour:
   colorCheckTexture: {fileID: 8400000, guid: 6dfcd103a57bde04e9096dcf0e51a919, type: 2}
   groundColor: {r: 1, g: 1, b: 1, a: 0}
   powerColor: 0
+  prevPowerColor: 0
 --- !u!114 &1214835395180371498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,9 +110,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cheatMode: 0
-  fallSpeed: 40
+  fallSpeed: 80
   lethalGrayScale: 0.05
-  deathFinal: 0
+  healthSpeed: 3
+  health: 1
+  isDead: 0
+  isShadowed: 0
 --- !u!114 &5122440203472945412
 MonoBehaviour:
   m_ObjectHideFlags: 0
