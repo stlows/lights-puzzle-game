@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 702a631009a84ca49ac3655511a3a061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumDistance: 20
   isOpened: 0
   delay: 0
   automaticOpen: 0
@@ -64,7 +63,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.3, y: 5.1, z: 2.6}
+  m_Size: {x: 1.3, y: 3.8, z: 2.8}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &6888462329013935214
 PrefabInstance:
@@ -82,6 +81,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3330486082611911642, guid: b435296da706ea142b0776620fcd68cd,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4198004004394937452, guid: b435296da706ea142b0776620fcd68cd,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860956777110301712, guid: b435296da706ea142b0776620fcd68cd,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4921144966655636534, guid: b435296da706ea142b0776620fcd68cd,
         type: 3}
@@ -149,6 +163,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5888965041009403470, guid: b435296da706ea142b0776620fcd68cd,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6646846757826999849, guid: b435296da706ea142b0776620fcd68cd,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881539935471110792, guid: b435296da706ea142b0776620fcd68cd,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275818144465842985, guid: b435296da706ea142b0776620fcd68cd,
         type: 3}
       propertyPath: m_Mesh
       value: 

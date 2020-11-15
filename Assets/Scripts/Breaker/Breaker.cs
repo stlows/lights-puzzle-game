@@ -77,9 +77,9 @@ public abstract class Breaker : MonoBehaviour
         {
             OpenBreaker();
         }
-
         audioSource.Play();
         isOpened = !isOpened;
+        arm.GetComponent<ArmWrapper>().UpdateColor(isOpened);
     }
 
     void CloseBreaker()
