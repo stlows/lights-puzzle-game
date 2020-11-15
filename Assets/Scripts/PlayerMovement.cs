@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
 	public float minVerticalSpeed;
 	public float airBonusSpeed;
 	public float jumpSpeed = 35f;
-	public float lateralFriction = 0.1f;
 	public LayerMask groundMask;
 	public float startSpeed;
 
@@ -87,27 +86,22 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                 {
-					// Lateral Friction
-					// Friction en sqrt pour permettre aux grandes vitesses de rester plus longtemps
-					// Tres important pour la dynamique entre la couleur high speed et la couleur jump
-					velocity.x -= lateralFriction * Math.Sign(velocity.x) * (float)Math.Sqrt(Math.Abs(velocity.x));
-					velocity.z -= lateralFriction * Math.Sign(velocity.z) * (float)Math.Sqrt(Math.Abs(velocity.z));
-
 					// Calculate velocity increase
-					Vector3 lateralVelocity = new Vector3(velocity.x, 0f, velocity.z);
-					Vector3 newSpeed = lateralVelocity + (lateralAcceleration * Time.deltaTime * (transform.right * x + transform.forward * z));
+					float lateralVelocity = velocity.magnitude + lateralAcceleration * Time.deltaTime;
+					Vector3 newSpeed = lateralVelocity * (transform.right * x + transform.forward * z);
 
-					// Apply increase to x and z while making sure they don't go over the max speed
+					//  Make sure we don't go over the max speed
+					if (newSpeed.magnitude > actualMaxSpeed)
+					{
+						newSpeed.x *= (actualMaxSpeed / newSpeed.magnitude);
+						newSpeed.z *= (actualMaxSpeed / newSpeed.magnitude);
+					}
+
+					// Apply increase to x and z
 					velocity.x = newSpeed.x;
 					velocity.z = newSpeed.z;
-
+					
 					// TODO add footstep sounds if speed != 0
-
-					if (velocity.magnitude > actualMaxSpeed)
-					{
-						velocity.x *= (actualMaxSpeed / velocity.magnitude);
-						velocity.z *= (actualMaxSpeed / velocity.magnitude);
-					}
                 }
 			}
 
