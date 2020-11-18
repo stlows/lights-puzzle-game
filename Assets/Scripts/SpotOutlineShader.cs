@@ -27,7 +27,7 @@ public class SpotOutlineShader : MonoBehaviour
         }
         else
         {
-            cylinder.SetFloat("_FirstOutlineWidth", 0.05f);
+            cylinder.SetFloat("_FirstOutlineWidth", 0.3f);
             box.SetFloat("_FirstOutlineWidth", 0.05f);
             cube.SetFloat("_FirstOutlineWidth", 0.05f);
         }

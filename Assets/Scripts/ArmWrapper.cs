@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ArmWrapper : MonoBehaviour
 {
+    public MeshRenderer[] affectedRenderers;
+
     private Material sphereUpMaterial;
     private Material sphereDownMaterial;
 
@@ -17,11 +19,17 @@ public class ArmWrapper : MonoBehaviour
     {
         if (isOpened)
         {
-            transform.Find("Arm").GetComponent<MeshRenderer>().material = sphereUpMaterial;
+            foreach (MeshRenderer rend in affectedRenderers) 
+            {
+                rend.material = sphereUpMaterial;
+            }
         }
         else
         {
-            transform.Find("Arm").GetComponent<MeshRenderer>().material = sphereDownMaterial;
+            foreach (MeshRenderer rend in affectedRenderers)
+            {
+                rend.material = sphereDownMaterial;
+            }
         }
     }
 }

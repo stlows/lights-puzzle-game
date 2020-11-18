@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Timer: MonoBehaviour
@@ -63,6 +62,19 @@ public abstract class Timer: MonoBehaviour
                 // Adjust angle of timer dial
                 knob.localEulerAngles = new Vector3(90f - (timeElapsed / seconds * 180f), 0, 0);
             }
+        }
+    }
+
+
+    private void LateUpdate()
+    {
+        if (fpsSelection.currentlyHovering == gameObject.name)
+        {
+            transform.Find("Body/Base").GetComponent<Renderer>().material.SetFloat("_FirstOutlineWidth", 0.1f);
+        }
+        else
+        {
+            transform.Find("Body/Base").GetComponent<Renderer>().material.SetFloat("_FirstOutlineWidth", 0f);
         }
     }
 

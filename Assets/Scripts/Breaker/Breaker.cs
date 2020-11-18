@@ -64,6 +64,21 @@ public abstract class Breaker : MonoBehaviour
         }
     }
 
+
+
+    private void LateUpdate()
+    {
+        if (fpsSelection.currentlyHovering == gameObject.name)
+        {
+            transform.Find("Body/Box").GetComponent<Renderer>().material.SetFloat("_FirstOutlineWidth", 0.1f);
+        }
+        else
+        {
+            transform.Find("Body/Box").GetComponent<Renderer>().material.SetFloat("_FirstOutlineWidth", 0f);
+        }
+    }
+
+
     void ActivateButton()
     {
         timeClicked = Time.time;
