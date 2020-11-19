@@ -44,11 +44,11 @@ public abstract class Timer: MonoBehaviour
 
     void Update()
     {
-        if (fpsSelection.lastSelected == gameObject.name)
-        {
-            fpsSelection.Clear();
-            ActivateButton();
-        }
+        //if (fpsSelection.lastSelectedId == gameObject.name)
+        //{
+        //    fpsSelection.Clear();
+        //    ActivateButton();
+        //}
         if (isOpened)
         {
             // Time elapsed since the timer has been turned on
