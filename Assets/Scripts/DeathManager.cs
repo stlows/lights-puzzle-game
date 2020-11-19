@@ -60,7 +60,7 @@ public class DeathManager : MonoBehaviour
 
         if (isGrounded)
         {
-            if (isShadowed)
+            if (isShadowed && !goToNextLevel)
                 DecreaseHealth();
             else
                 IncreaseHealth();
