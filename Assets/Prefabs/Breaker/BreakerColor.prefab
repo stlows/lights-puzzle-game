@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4835474133023651012}
   - component: {fileID: 4835474133023651014}
-  - component: {fileID: 65864992404526126}
   m_Layer: 0
   m_Name: BreakerColor
   m_TagString: Untagged
@@ -49,22 +48,10 @@ MonoBehaviour:
   delay: 0
   automaticOpen: 0
   automaticOpenDelay: 0
+  colliderName: 
   lightTransforms: []
   openColor: {r: 1, g: 1, b: 1, a: 1}
   closeColor: {r: 0, g: 0, b: 0, a: 1}
---- !u!65 &65864992404526126
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4835474133023651013}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.8, y: 3.8, z: 2.6}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &7852807099861595083
 PrefabInstance:
   m_ObjectHideFlags: 0

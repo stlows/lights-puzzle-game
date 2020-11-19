@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6582718057655825396}
   - component: {fileID: 6582718057655825399}
-  - component: {fileID: 6582718057655825393}
   m_Layer: 0
   m_Name: BreakerRail
   m_TagString: Untagged
@@ -49,20 +48,8 @@ MonoBehaviour:
   delay: 1
   automaticOpen: 0
   automaticOpenDelay: 0
+  colliderName: 
   railTransform: {fileID: 0}
---- !u!65 &6582718057655825393
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6582718057655825392}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.8, y: 3.8, z: 2.6}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1512881296019761121
 PrefabInstance:
   m_ObjectHideFlags: 0
