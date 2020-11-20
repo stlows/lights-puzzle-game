@@ -6,6 +6,7 @@ public class DetectSelection : MonoBehaviour
 {
     public float minimumDistance;
     public string lastSelectedName;
+    public string lastHoveredName;
 
     private const KeyCode triggerKey = KeyCode.Mouse0;
     private RaycastHit hitInfo;
@@ -17,19 +18,22 @@ public class DetectSelection : MonoBehaviour
 
     void Update()
     {
+        lastHoveredName = CheckRaycastHit();
         if (Input.GetKeyUp(triggerKey))
         {
-            CheckRaycastHit();
+            lastSelectedName = lastHoveredName;
         }
     }
 
-    void CheckRaycastHit()
+    private string CheckRaycastHit()
     {
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * minimumDistance, Color.green, 1f);
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, minimumDistance))
         {
-            lastSelectedName = hitInfo.collider.name;
+            return hitInfo.collider.name;
         }
+
+        return null;
     }
 
     public void Clear()

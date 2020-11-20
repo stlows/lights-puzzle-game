@@ -75,12 +75,12 @@ MonoBehaviour:
   minVerticalSpeed: -300
   airBonusSpeed: 50
   jumpSpeed: 35
-  lateralFriction: 1
   groundMask:
     serializedVersion: 2
     m_Bits: 2048
   startSpeed: 0
   isGrounded: 0
+  wasGrounded: 0
 --- !u!114 &5841170985613729897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,6 +97,15 @@ MonoBehaviour:
   groundColor: {r: 1, g: 1, b: 1, a: 0}
   powerColor: 0
   prevPowerColor: 0
+  colorArray:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &1214835395180371498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +125,7 @@ MonoBehaviour:
   health: 1
   isDead: 0
   isShadowed: 0
+  jumpEnabled: 0
 --- !u!114 &5122440203472945412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,8 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45144b2fe1c3e6749919f63b52b98388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumDistance: 15
-  lastSelected: 
+  minimumDistance: 10
+  lastSelectedName: 
+  lastHoveredName: 
 --- !u!1 &1532480925139446688
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,9 +186,10 @@ Camera:
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -271,9 +283,10 @@ Camera:
   m_ClearFlags: 2
   m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -363,6 +376,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -374,6 +388,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0

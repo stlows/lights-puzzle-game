@@ -48,7 +48,6 @@ MonoBehaviour:
   delay: 0
   automaticOpen: 0
   automaticOpenDelay: 0
-  colliderName: 
   lightTransforms: []
   openIntensity: 4
   closeIntensity: 0
