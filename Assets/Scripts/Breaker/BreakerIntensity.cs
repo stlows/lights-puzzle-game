@@ -9,6 +9,11 @@ public class BreakerIntensity : Breaker
     public float openIntensity = 2f;
     public float closeIntensity = 0f;
 
+    private void Awake()
+    {
+        ledUpMat = transform.Find("SphereUp").GetComponent<Renderer>().material;
+        ledDownMat = transform.Find("SphereDown").GetComponent<Renderer>().material;
+    }
 
     private void Start()
     {

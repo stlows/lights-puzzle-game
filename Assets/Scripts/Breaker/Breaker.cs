@@ -9,13 +9,13 @@ public abstract class Breaker : MonoBehaviour
     public bool automaticOpen;
     public float automaticOpenDelay;
 
+    protected Material ledUpMat;
+    protected Material ledDownMat;
     private bool isHighlighted;
     private string colliderName; 
     private Transform armWrapper;
     private Material roundedBoxMat;
     private Material armMat;
-    private Color sphereUpColor;
-    private Color sphereDownColor;
     private DetectSelection fpsSelection;
     private AudioSource audioSource;
     private Vector3 closedAngle = new Vector3(-30, 0, 0);
@@ -31,8 +31,6 @@ public abstract class Breaker : MonoBehaviour
         armMat = transform.Find("Body/ArmWrapper/Arm").GetComponent<Renderer>().material;
         timeClicked = Mathf.Infinity;
         roundedBoxMat = transform.Find("Body/RoundedBoxWrapper/RoundedBox").GetComponent<Renderer>().material;
-        sphereUpColor = transform.Find("Body/SphereUp").GetComponent<Renderer>().material.GetVector("_Color");
-        sphereDownColor = transform.Find("Body/SphereDown").GetComponent<Renderer>().material.GetVector("_Color");
         isHighlighted = false;
 
         // Collider objects must be renamed for the DetectSelection script
@@ -101,13 +99,17 @@ public abstract class Breaker : MonoBehaviour
     void CloseBreaker()
     {
         armWrapper.localEulerAngles = closedAngle;
-        armMat.SetVector("_Color", sphereDownColor);
+        //armMat.SetVector("_Color", ledDownMat.GetVector("_Color"));
+        ledDownMat.EnableKeyword("_EMISSION");
+        ledUpMat.DisableKeyword("_EMISSION");
     }
 
     void OpenBreaker()
     {
         armWrapper.localEulerAngles = openedAngle;
-        armMat.SetVector("_Color", sphereUpColor);
+        //armMat.SetVector("_Color", ledUpMat.GetVector("_Color"));
+        ledUpMat.EnableKeyword("_EMISSION");
+        ledDownMat.DisableKeyword("_EMISSION");
     }
 
     private void LateUpdate()

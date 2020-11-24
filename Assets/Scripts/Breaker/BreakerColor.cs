@@ -9,6 +9,12 @@ public class BreakerColor : Breaker
     public Color openColor = Color.white;
     public Color closeColor = Color.black;
 
+    private void Awake()
+    {
+        ledUpMat = transform.Find("SphereUp").GetComponent<Renderer>().material;
+        ledDownMat = transform.Find("SphereDown").GetComponent<Renderer>().material;
+    }
+
     private void Start()
     {
         // Extract Light components from provided Light transforms

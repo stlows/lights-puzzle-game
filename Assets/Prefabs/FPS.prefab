@@ -72,6 +72,7 @@ MonoBehaviour:
   lateralAcceleration: 1000
   verticalAcceleration: -100
   maxLateralSpeed: 25
+  initialSpeedY: -50
   minVerticalSpeed: -300
   airBonusSpeed: 50
   jumpSpeed: 35
@@ -138,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45144b2fe1c3e6749919f63b52b98388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumDistance: 10
+  minimumDistance: 13
   lastSelectedName: 
   lastHoveredName: 
 --- !u!1 &1532480925139446688

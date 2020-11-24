@@ -12,6 +12,8 @@ public class BreakerRail : Breaker
     {
         railCurve = railTransform.gameObject.GetComponent<RailCurve>();
         railCurve.isOpened = isOpened;
+        ledUpMat = transform.Find("ArrowUp/Prism").GetComponent<Renderer>().material;
+        ledDownMat = transform.Find("ArrowDown/Prism").GetComponent<Renderer>().material;
     }
 
     void Start()

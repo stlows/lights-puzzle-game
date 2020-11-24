@@ -9,7 +9,7 @@ public class SpotOutlineShader : MonoBehaviour
     private Material cubeMat;
     private Material boxMat;
 
-    private Light light;
+    private new Light light;
     private Color currentColor;
     private float currentIntensity;
 

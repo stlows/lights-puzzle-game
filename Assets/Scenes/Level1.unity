@@ -253,6 +253,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Breaker for 2nd spot
       objectReference: {fileID: 0}
+    - target: {fileID: 3561241393361928723, guid: 5768e24d910fdb04c9f25649842a5768,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 909d726301794ab49a25297d999a5484, type: 2}
     - target: {fileID: 5705587270801183595, guid: 5768e24d910fdb04c9f25649842a5768,
         type: 3}
       propertyPath: lightTransforms.Array.size

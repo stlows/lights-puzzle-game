@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 	public float lateralAcceleration = 500f;
 	public float verticalAcceleration = -100f; // gravity
 	public float maxLateralSpeed = 30f;
+	public float initialSpeedY;
 	public float minVerticalSpeed;
 	public float airBonusSpeed;
 	public float jumpSpeed = 35f;
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
 		velocity = new Vector3(0, startSpeed, 0);
 		isGrounded = true;
 		wasGrounded = true;
+		velocity = new Vector3(0, initialSpeedY, 0);
 	}
 
     // Update is called once per frame
