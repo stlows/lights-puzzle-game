@@ -20,7 +20,7 @@ public class BreakerIntensity : Breaker
         // Extract Light components from provided Light transforms
         foreach (Transform lightTransform in lightTransforms)
         {
-            Light light = lightTransform.Find("Rotating").Find("Light").gameObject.GetComponent<Light>();
+            Light light = lightTransform.Find("Light").gameObject.GetComponent<Light>();
             associatedLights.Add(light);
         }
         BreakerStart();

@@ -8,7 +8,11 @@ public class TimerColor: Timer
     public Color openColor = Color.white;
     public Color closeColor = Color.black;
 
-
+    public void Awake()
+    {
+        ledUpMat= transform.Find("SphereUp").GetComponent<Renderer>().material;
+        ledDownMat= transform.Find("SphereDown").GetComponent<Renderer>().material;
+    }
     public override void CloseSpecific()
     {
         foreach (Light light in associatedLights)
